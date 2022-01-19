@@ -1,8 +1,19 @@
 .add-button {
   width: 150px;
-  height: 50px;
-  border: 2px solid #fff;
-  background-image: url(./image/add.png);
-  background-position: cover;
+  height: 50px;  
+  background-image: url(../../image/AddButton.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #000;
+  border: none;
   padding: 0;
+}
+
+@media screen and (max-width: 760px) {
+  .add-button {
+    width: 282px;    
+    margin: 36px auto;
+    background-image: url(../../image/AddButton_320.png);
+  }
+  
 }

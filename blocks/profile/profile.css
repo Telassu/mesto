@@ -1,6 +1,18 @@
 .profile {
-	width: 880px;
-	min-height: 120px;
-	display: flex;
-	flex-direction: row;	
+  width: 100%;
+  max-width: 880px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 760px) {
+	.profile {
+    max-width: 282px;
+    margin: auto;
+    min-height: 262px;
+    flex-direction: column;    
+  }
 }
