@@ -1,0 +1,9 @@
+.popup__save-button {
+  background-image: url(../../../image/Submit\ Button.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 358px;
+  min-height: 50px;
+  border: none;
+  margin: 18px auto 37px;
+}
