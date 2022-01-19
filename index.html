@@ -71,17 +71,19 @@
     </footer>
   </main>
   <section class="popup">
-    <button class="close-button"></button>>
-    <form class="popup__form" action="" method="get">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <label for="name">
-        <input type="text" value="Жак-Ив Кусто" name="name" class="popup__count popup__count_name">
-      </label>
-      <label for="description">
-        <input type="text" value="Исследователь океана" name="description" class="popup__count popup__count_description">
-      </label>
-      <button class="popup__save-button" type="submit"></button>
-    </form>>
+    <div class="popup__window">
+      <form class="popup__form" action="" method="get">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <label for="name">
+          <input type="text" value="Жак-Ив Кусто" name="name" class="popup__count popup__count_name">
+        </label>
+        <label for="description">
+          <input type="text" value="Исследователь океана" name="description" class="popup__count popup__count_description">
+        </label>
+        <button class="popup__save-button" type="submit"></button>
+      </form>
+      <button class="close-button"></button>
+    </div>
   </section>
   <script src="./scripts/index.js"></script>
 </body>

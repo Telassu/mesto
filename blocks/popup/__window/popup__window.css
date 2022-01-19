@@ -1,0 +1,7 @@
+.popup__window {
+    display: flex;    
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    z-index: 2;
+}
