@@ -9,6 +9,11 @@
   text-rendering: optimizeLegibility;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; 
+  justify-content: center;    
+}
+
+@media screen and (min-width: 900px) {
+  .page {
+    align-items: center; 
+  }
 }
