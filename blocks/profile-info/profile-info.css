@@ -1,0 +1,8 @@
+.profile-info {
+	width: 336px;
+	min-height: 73px;
+	color: #fff;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}

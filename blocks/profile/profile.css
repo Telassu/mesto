@@ -1,0 +1,6 @@
+.profile {
+	width: 880px;
+	min-height: 120px;
+	display: flex;
+	flex-direction: row;	
+}
