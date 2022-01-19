@@ -1,0 +1,8 @@
+.add-button {
+  width: 150px;
+  height: 50px;
+  border: 2px solid #fff;
+  background-image: url(./image/add.png);
+  background-position: cover;
+  padding: 0;
+}
