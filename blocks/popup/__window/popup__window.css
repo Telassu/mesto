@@ -1,0 +1,14 @@
+.popup__window {
+  display: flex;
+  z-index: 2;
+  position: fixed;
+  top: 40%;
+  left: 30%;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__window {
+    top: 123px;
+    left: auto;
+  }  
+}

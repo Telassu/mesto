@@ -1,0 +1,8 @@
+.element__text {
+  width: 246px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box; 
+}
