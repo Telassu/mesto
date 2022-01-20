@@ -1,0 +1,17 @@
+.popup__count {
+  width: 358px;
+  min-height: 27px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 17px;
+  margin: 0 auto 30px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__count {
+    width: 238px;    
+  }
+}
