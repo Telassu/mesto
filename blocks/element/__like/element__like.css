@@ -10,11 +10,12 @@
 }
 
 .element__like:hover {
-  background-image: url(../../../image/likeHover.png);
-  transition: 2s;
+  opacity: .6;
+  transition: .4s;
   
 }
 
 .element__like:active {
   background-image: url(../../../image/likeActive.png);
+  opacity: 1;
 }

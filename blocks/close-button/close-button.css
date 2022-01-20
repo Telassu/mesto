@@ -19,7 +19,7 @@
 @media screen and (max-width: 768px) {
   .close-button {
     width: 20px;
-    height: 20px;    
+    height: 20px;
     top: -32px;
     right: 0;
   }
