@@ -1,7 +1,6 @@
 .popup__form {
   width: 430px;
   background-color: #fff;
-  border-radius: 10px;
   margin: auto;
   z-index: 2;
   display: flex;
