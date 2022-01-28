@@ -1,7 +1,9 @@
 .popup {
-  width: 100%;
-  height: 100%;
   display: none;
+  position: fixed;
+  top: 195px;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .popup::before {
@@ -14,4 +16,10 @@
   left: 0;
   right: 0;
   z-index: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .popup {
+    top: 123px;
+  }
 }

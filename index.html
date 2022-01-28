@@ -8,83 +8,81 @@
 </head>
 <body class="page">
   <header class="header">
-    <img src="./image/logo.png" alt="Место" class="logo">
+    <img src="./image/logo.svg" alt="Место" class="logo">
   </header>
   <main class="content">
     <section class="profile">
-      <img src="./image/avatar.svg" class="avatar" alt="фотография пользователя">
+      <img src="./image/avatar.svg" class="profile__avatar" alt="фотография пользователя">
       <div class="profile-info">
         <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-        <button class="edit-button"></button>
+        <button class="profile__edit-button" type="button" aria-label="изменить профиль"></button>
         <p class="profile-info__description">Исследователь океана</p>
       </div>      
       <form>
-        <button name="add-button" class="add-button"></button>
+        <button name="add-button" class="profile__add-button" type="submit" aria-label="добавить место"></button>
       </form>
     </section>
-    <ul class="element">
-      <li class="element__item">
-        <img src="./image/kazan.jpg" class="element__image" alt="Спасская башня казанского кремля">
-        <div class="element__text">
-          <h2 class="element__title">Казанский кремль</h2>
-          <button class="element__like"></button>
-        </div>
-      </li>
-      <li class="element__item">
-        <img src="./image/Kolomna.jpg" class="element__image" alt="монастырь в Коломне">
-        <div class="element__text">
-          <h2 class="element__title">Коломенский кремль</h2> 
-          <button class="element__like"></button>
-        </div>
-      </li>
-      <li class="element__item">
-        <img src="./image/moscow.jpg" class="element__image" alt="башня московского кремля в лучах солнца">
-        <div class="element__text">
-          <h2 class="element__title">Московский кремль</h2>
-          <button class="element__like"></button>
-        </div>
-      </li>
-      <li class="element__item">
-        <img src="./image/tobolsk.jpg" class="element__image" alt="софийский собор тобольского кремля">
-        <div class="element__text">
-          <h2 class="element__title">Тобольский кремль</h2>
-          <button class="element__like"></button>
-        </div>
-      </li>
-      <li class="element__item">
-        <img src="./image/tula.jpg" class="element__image" alt="стена и башня тульского кремля">
-        <div class="element__text">
-          <h2 class="element__title">Тульский кремль</h2>
-          <button class="element__like"></button>
-        </div>
-      </li>
-      <li class="element__item">
-        <img src="./image/V_Novgorod.jpg" class="element__image" alt="ров и стена новгородского кремля">
-        <div class="element__text">
-          <h2 class="element__title">Новгородский кремль</h2>
-          <button class="element__like"></button>
-        </div>
-      </li>
-    </ul>
-    <footer class="footer">
-      <p class="footer__author">&copy; 2021 Mesto Russia</p>
-    </footer>
+    <section class="elements">
+      <ul class="element">
+        <li class="element__item">
+          <img src="./image/kazan.jpg" class="element__image" alt="Спасская башня казанского кремля">
+          <div class="element__text">
+            <h2 class="element__title">Казанский кремль</h2>
+            <button class="element__like" type="submit" aria-label="нравится"></button>
+          </div>
+        </li>
+        <li class="element__item">
+          <img src="./image/Kolomna.jpg" class="element__image" alt="монастырь в Коломне">
+          <div class="element__text">
+            <h2 class="element__title">Коломенский кремль</h2> 
+            <button class="element__like" type="submit" aria-label="нравится"></button>
+          </div>
+        </li>
+        <li class="element__item">
+          <img src="./image/moscow.jpg" class="element__image" alt="башня московского кремля в лучах солнца">
+          <div class="element__text">
+            <h2 class="element__title">Московский кремль</h2>
+            <button class="element__like" type="submit" aria-label="нравится"></button>
+          </div>
+        </li>
+        <li class="element__item">
+          <img src="./image/tobolsk.jpg" class="element__image" alt="софийский собор тобольского кремля">
+          <div class="element__text">
+            <h2 class="element__title">Тобольский кремль</h2>
+            <button class="element__like" type="submit" aria-label="нравится"></button>
+          </div>
+        </li>
+        <li class="element__item">
+          <img src="./image/tula.jpg" class="element__image" alt="стена и башня тульского кремля">
+          <div class="element__text">
+            <h2 class="element__title">Тульский кремль</h2>
+            <button class="element__like" type="submit" aria-label="нравится"></button>
+          </div>
+        </li>
+        <li class="element__item">
+          <img src="./image/V_Novgorod.jpg" class="element__image" alt="ров и стена новгородского кремля">
+          <div class="element__text">
+            <h2 class="element__title">Новгородский кремль</h2>
+            <button class="element__like" type="submit" aria-label="нравится"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
   </main>
-  <section class="popup">
+  <footer class="footer">
+    <p class="footer__author">&copy; 2021 Mesto Russia</p>
+  </footer>
+  <div class="popup">
     <div class="popup__window">
-      <form class="popup__form" action="#" method="get">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <label for="name">
-          <input type="text" value="Жак-Ив Кусто" id="name" name="name" class="popup__count popup__count_name">
-        </label>
-        <label for="description">
-          <input type="text" value="Исследователь океана" id="description" name="description" class="popup__count popup__count_description">
-        </label>
-        <button class="popup__save-button" type="submit"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" action="#" method="get" name="popup">
+        <input type="text" name="name" class="popup__input popup__input_type_name">
+        <input type="text" name="description" class="popup__input popup__input_type_description">
+        <button class="popup__save-button" type="submit" aria-label="сохранить">Сохранить</button>
       </form>
-      <button class="close-button"></button>
+      <button class="popup__close-button" type="button" aria-label="закрыть окно"></button>
     </div>
-  </section>
+  </div>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

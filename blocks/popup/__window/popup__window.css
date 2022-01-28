@@ -1,14 +1,8 @@
 .popup__window {
   display: flex;
+  flex-direction: column;
   z-index: 2;
-  position: fixed;
-  top: 195px;
-  left: auto;
-}
-
-@media screen and (max-width: 768px) {
-  .popup__window {
-    top: 123px;
-    left: auto;
-  }
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
 }

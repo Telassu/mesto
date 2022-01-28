@@ -1,20 +1,18 @@
 .profile-info {
   width: 336px;
-  min-height: 72px;
   color: #fff;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 62px auto 75px 30px;
+  margin: 22px auto 25px 30px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .profile-info {
-    width: 282px;
-    min-height: 54px;
+    width: 100%;
     text-align: center;
-    margin: 26px auto 36px;
+    margin: 26px auto 0;
     justify-content: center;
   }
 }

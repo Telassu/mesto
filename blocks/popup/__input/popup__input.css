@@ -1,17 +1,22 @@
-.popup__count {
+.popup__input {
   width: 358px;
   min-height: 27px;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: 400;
   line-height: 17px;
   margin: 0 auto 30px;
   border-top: none;
   border-left: none;
   border-right: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.popup__input:focus {
+  color: #55d;
 }
 
 @media screen and (max-width: 768px) {
-  .popup__count {
+  .popup__input {
     width: 238px;
   }
 }
