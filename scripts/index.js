@@ -21,7 +21,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(); 
+  closePopup();
 }
 
 addButton.addEventListener('click', openPopup);

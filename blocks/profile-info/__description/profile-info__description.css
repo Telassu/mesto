@@ -2,7 +2,7 @@
   margin: 0;
   font-size: 18px;
   line-height: 22px;
-  font-weight: normal;
+  font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -12,5 +12,6 @@
   .profile-info__description {
     font-size: 14px;
     line-height: 17px;
+    margin-top: 10px;
   }
 }
