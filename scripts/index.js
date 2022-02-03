@@ -64,6 +64,12 @@ const placeInput = document.querySelector('.popup__input_type_place');
 const linkInput = document.querySelector('.popup__input_type_link');
 const popupPlace = document.querySelector('.popup_element');
 const closePlaceButton = document.querySelector('.popup__close-button_element');
+const imageViewPopup = document.querySelector('.imageView');
+const imageCloseButton = document.querySelector('.imageView__close-button');
+//const imageOnClick = document.querySelector('.imageView__image');
+const imageTextOnClick = document.querySelector('.imageView__caption');
+const newCard = template.querySelector('.element').cloneNode(true);
+const userCard =  template.querySelector('.element').cloneNode(true);
 
 //шесть карточек при запуске страницы
 function renderCards(element) {
@@ -72,7 +78,7 @@ function renderCards(element) {
   newCard.querySelector('.element__title').textContent = element.name;
   newCard.querySelector('.element__image').alt = element.name;
   newCard.querySelector('.element__image').src = element.link;
-
+  
   list.append(newCard);
   addListener(newCard);
 }
@@ -83,7 +89,7 @@ function render() {
 
 render();
 
-//открытие и закрытие попапа
+//открытие и закрытие попапа формы
 function openCardPopup() {  
  popupPlace.classList.add('popup_opened');
 }
@@ -96,6 +102,7 @@ function closeCardPopup() {
 addButton.addEventListener('click', openCardPopup);
 closePlaceButton.addEventListener('click', closeCardPopup);
 formElementCards.addEventListener('submit', addNewPlace);
+imageCloseButton.addEventListener('click', closeImagePopup)
 
 //добавление фото
 function addNewPlace(evt) {
@@ -115,6 +122,7 @@ function addNewPlace(evt) {
 function addListener(el) {
   el.querySelector('.element__like').addEventListener('click', handleLike);
   el.querySelector('.element__delete').addEventListener('click', handleDelete);
+  el.querySelector('.element__image').addEventListener('click', imageView);
 }
 
 //удаление фото
@@ -125,4 +133,20 @@ function handleDelete(event) {
 //like'и
 function handleLike(event) {
  event.target.closest('.element__like').classList.toggle('element__like_active');
+}
+
+//открытие и закрытие попапа с картинкой
+function openImagePopup() {
+  imageViewPopup.classList.add('imageView_opened');  
+}
+
+function closeImagePopup() {
+  imageViewPopup.classList.remove('imageView_opened');
+}
+
+//увеличение фотографии
+
+function imageView() {
+  
+  openImagePopup();
 }
