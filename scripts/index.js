@@ -32,7 +32,7 @@ let formElement = document.querySelector('.popup__form_profile');
 let nameInput = formElement.querySelector('.popup__input_type_name');
 let jobInput = formElement.querySelector('.popup__input_type_description');
 let profileName = document.querySelector('.profile-info__name');
-let profileJob = document.querySelector('.profile-info__description')
+let profileJob = document.querySelector('.profile-info__description');
 
 function openPopup() {  
   nameInput.value = profileName.textContent;
@@ -66,10 +66,8 @@ const popupPlace = document.querySelector('.popup_element');
 const closePlaceButton = document.querySelector('.popup__close-button_element');
 const imageViewPopup = document.querySelector('.imageView');
 const imageCloseButton = document.querySelector('.imageView__close-button');
-//const imageOnClick = document.querySelector('.imageView__image');
+const imageOnClick = document.querySelector('.imageView__image');
 const imageTextOnClick = document.querySelector('.imageView__caption');
-const newCard = template.querySelector('.element').cloneNode(true);
-const userCard =  template.querySelector('.element').cloneNode(true);
 
 //шесть карточек при запуске страницы
 function renderCards(element) {
@@ -86,8 +84,6 @@ function renderCards(element) {
 function render() {
   initialCards.forEach(renderCards);
 }
-
-render();
 
 //открытие и закрытие попапа формы
 function openCardPopup() {  
@@ -109,11 +105,12 @@ function addNewPlace(evt) {
   evt.preventDefault();
 
   const userCard =  template.querySelector('.element').cloneNode(true);
-  userCard.querySelector('.element__title').textContent = placeInput.value;  
+  userCard.querySelector('.element__title').textContent = placeInput.value;
   userCard.querySelector('.element__image').src = linkInput.value;
+  userCard.querySelector('.element__image').alt = placeInput.value;
 
   list.prepend(userCard);
-  addListener(userCard);  
+  addListener(userCard);
   closeCardPopup(); 
   placeInput.value = '';
   linkInput.value = '';
@@ -122,7 +119,7 @@ function addNewPlace(evt) {
 function addListener(el) {
   el.querySelector('.element__like').addEventListener('click', handleLike);
   el.querySelector('.element__delete').addEventListener('click', handleDelete);
-  el.querySelector('.element__image').addEventListener('click', imageView);
+  el.querySelector('.element__image').addEventListener('click', bigImage);
 }
 
 //удаление фото
@@ -137,16 +134,21 @@ function handleLike(event) {
 
 //открытие и закрытие попапа с картинкой
 function openImagePopup() {
-  imageViewPopup.classList.add('imageView_opened');  
+  imageViewPopup.classList.add('imageView_opened');
 }
 
 function closeImagePopup() {
   imageViewPopup.classList.remove('imageView_opened');
 }
 
-//увеличение фотографии
-
-function imageView() {
-  
-  openImagePopup();
+//увеличение картинки
+function bigImage (e) {
+  const cardImg = e.target.closest('.element__image');
+    imageOnClick.src = cardImg.src;
+    imageOnClick.alt = cardImg.alt;
+    imageTextOnClick.textContent = cardImg.alt;
+   
+    openImagePopup();
 }
+
+render();
