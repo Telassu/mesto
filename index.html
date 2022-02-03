@@ -21,50 +21,7 @@
       <button name="add-button" class="profile__add-button" type="button" aria-label="добавить место"></button>
     </section>
     <section class="elements">
-      <ul class="elements__list">
-        <li class="element">
-          <img src="./image/kazan.jpg" class="element__image" alt="Спасская башня казанского кремля">
-          <div class="element__text">
-            <h2 class="element__title">Казанский кремль</h2>
-            <button class="element__like" type="button" aria-label="нравится"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./image/Kolomna.jpg" class="element__image" alt="монастырь в Коломне">
-          <div class="element__text">
-            <h2 class="element__title">Коломенский кремль</h2> 
-            <button class="element__like" type="button" aria-label="нравится"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./image/moscow.jpg" class="element__image" alt="башня московского кремля в лучах солнца">
-          <div class="element__text">
-            <h2 class="element__title">Московский кремль</h2>
-            <button class="element__like" type="button" aria-label="нравится"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./image/tobolsk.jpg" class="element__image" alt="софийский собор тобольского кремля">
-          <div class="element__text">
-            <h2 class="element__title">Тобольский кремль</h2>
-            <button class="element__like" type="button" aria-label="нравится"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./image/tula.jpg" class="element__image" alt="стена и башня тульского кремля">
-          <div class="element__text">
-            <h2 class="element__title">Тульский кремль</h2>
-            <button class="element__like" type="button" aria-label="нравится"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./image/V_Novgorod.jpg" class="element__image" alt="ров и стена новгородского кремля">
-          <div class="element__text">
-            <h2 class="element__title">Новгородский кремль</h2>
-            <button class="element__like" type="button" aria-label="нравится"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="elements__list"></ul>
     </section>
   </main>
   <footer class="footer">
@@ -73,7 +30,7 @@
   <div class="popup">
     <div class="popup__window">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" action="#" method="get" name="popup">
+      <form class="popup__form popup__form_profile" action="#" method="get" name="popup">
         <input type="text" name="name" class="popup__input popup__input_type_name">
         <input type="text" name="description" class="popup__input popup__input_type_description">
         <button class="popup__save-button" type="submit" aria-label="сохранить">Сохранить</button>
@@ -81,6 +38,27 @@
       <button class="popup__close-button" type="button" aria-label="закрыть окно"></button>
     </div>
   </div>
+  <div class="popup popup_element">
+    <div class="popup__window">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form popup__form_element" action="#" method="get" name="popup">
+        <input type="text" name="place" class="popup__input popup__input_type_place" placeholder="Название">
+        <input type="text" name="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку">
+        <button class="popup__save-button popup__save-button_element" type="submit" aria-label="сохранить">Сохранить</button>
+      </form>
+      <button class="popup__close-button popup__close-button_element" type="button" aria-label="закрыть окно"></button>
+    </div>
+  </div>
+  <template class="element__template">
+    <li class="element">
+      <img class="element__image" src="#" alt="#"/>
+      <button class="element__delete" type="button" aria-label="удалить"></button>
+      <div class="element__text">
+        <h2 class="element__title">test</h2>
+        <button class="element__like" type="button" aria-label="нравится"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
