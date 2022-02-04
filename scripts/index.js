@@ -25,15 +25,31 @@ const initialCards = [
   }
 ]; 
 
-let editButton = document.querySelector('.profile__edit-button');
-let closeButton = document.querySelector('.popup__close-button');
-let popup = document.querySelector('.popup');
-let formElement = document.querySelector('.popup__form_profile');
-let nameInput = formElement.querySelector('.popup__input_type_name');
-let jobInput = formElement.querySelector('.popup__input_type_description');
-let profileName = document.querySelector('.profile-info__name');
-let profileJob = document.querySelector('.profile-info__description');
+//переменные
+const editButton = document.querySelector('.profile__edit-button');
+const closeButton = document.querySelector('.popup__close-button');
+const popup = document.querySelector('.popup_profile');
+const formElement = document.querySelector('.popup__form_profile');
+const nameInput = formElement.querySelector('.popup__input_type_name');
+const jobInput = formElement.querySelector('.popup__input_type_description');
+const profileName = document.querySelector('.profile-info__name');
+const profileJob = document.querySelector('.profile-info__description');
+const template = document.querySelector('.element__template').content;
+const list = document.querySelector('.elements__list');
+const addButton = document.querySelector('.profile__add-button');
+const formElementCards = document.querySelector('.popup__form_element');
+const placeInput = document.querySelector('.popup__input_type_place');
+const linkInput = document.querySelector('.popup__input_type_link');
+const popupPlace = document.querySelector('.popup_element');
+const closePlaceButton = document.querySelector('.popup__close-button_element');
+const imageViewPopup = document.querySelector('.popup_imageView');
+const imageCloseButton = document.querySelector('.popup__close-button_imageView');
+const imageOnClick = document.querySelector('.imageView__image');
+const imageTextOnClick = document.querySelector('.imageView__caption');
 
+//функции
+
+//открытие и закрытие попапов
 function openPopup() {  
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -44,30 +60,13 @@ function closePopup() {
   popup.classList.remove('popup_opened');
 }
 
+//редактирование профиля
 function formSubmitHandler (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup();
 }
-
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
-formElement.addEventListener('submit', formSubmitHandler);
-
-//ПР5
-const template = document.querySelector('.element__template').content;
-const list = document.querySelector('.elements__list');
-const addButton = document.querySelector('.profile__add-button');
-const formElementCards = document.querySelector('.popup__form_element');
-const placeInput = document.querySelector('.popup__input_type_place');
-const linkInput = document.querySelector('.popup__input_type_link');
-const popupPlace = document.querySelector('.popup_element');
-const closePlaceButton = document.querySelector('.popup__close-button_element');
-const imageViewPopup = document.querySelector('.imageView');
-const imageCloseButton = document.querySelector('.imageView__close-button');
-const imageOnClick = document.querySelector('.imageView__image');
-const imageTextOnClick = document.querySelector('.imageView__caption');
 
 //шесть карточек при запуске страницы
 function renderCards(element) {
@@ -94,12 +93,6 @@ function closeCardPopup() {
   popupPlace.classList.remove('popup_opened');
 }
 
-//вызовы
-addButton.addEventListener('click', openCardPopup);
-closePlaceButton.addEventListener('click', closeCardPopup);
-formElementCards.addEventListener('submit', addNewPlace);
-imageCloseButton.addEventListener('click', closeImagePopup)
-
 //добавление фото
 function addNewPlace(evt) {
   evt.preventDefault();
@@ -114,12 +107,6 @@ function addNewPlace(evt) {
   closeCardPopup(); 
   placeInput.value = '';
   linkInput.value = '';
-}
-
-function addListener(el) {
-  el.querySelector('.element__like').addEventListener('click', handleLike);
-  el.querySelector('.element__delete').addEventListener('click', handleDelete);
-  el.querySelector('.element__image').addEventListener('click', bigImage);
 }
 
 //удаление фото
@@ -150,5 +137,21 @@ function bigImage (e) {
    
     openImagePopup();
 }
+
+//вызовы общих кнопок
+function addListener(el) {
+  el.querySelector('.element__like').addEventListener('click', handleLike);
+  el.querySelector('.element__delete').addEventListener('click', handleDelete);
+  el.querySelector('.element__image').addEventListener('click', bigImage);
+}
+
+//вызовы
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
+formElement.addEventListener('submit', formSubmitHandler);
+addButton.addEventListener('click', openCardPopup);
+closePlaceButton.addEventListener('click', closeCardPopup);
+formElementCards.addEventListener('submit', addNewPlace);
+imageCloseButton.addEventListener('click', closeImagePopup);
 
 render();
