@@ -38,7 +38,7 @@ const profileJob = document.querySelector('.profile-info__description');
 const template = document.querySelector('.element__template').content;
 const list = document.querySelector('.elements__list');
 const popupElementAdd = document.querySelector('.profile__add-button');
-const formElementCards = document.querySelector('.popup__form_element');
+const formElementCards = document.querySelector('.popup__save-button_element');
 const placeInput = document.querySelector('.popup__input_type_place');
 const linkInput = document.querySelector('.popup__input_type_link');
 const popupElement = document.querySelector('.popup_element');
@@ -76,32 +76,42 @@ function submitHandler (evt) {
 }
 
 //шесть карточек при запуске страницы
-function renderCards(element) {
-  const newCard = template.querySelector('.element').cloneNode(true);
-
-  newCard.querySelector('.element__title').textContent = element.name;
-  newCard.querySelector('.element__image').alt = element.name;
-  newCard.querySelector('.element__image').src = element.link;
+function createCard(element) {
   
-  list.append(newCard);
-  addListener(newCard);
+  const cardElement = template.querySelector('.element').cloneNode(true); 
+  cardElement.querySelector('.element__title').textContent = element.name;
+  cardElement.querySelector('.element__image').alt = element.name;
+  cardElement.querySelector('.element__image').src = element.link;
+
+  addListener(cardElement);
+
+  return cardElement;
+}
+
+function renderCards(card, element) {
+  list.append(card);
 }
 
 function render() {
-  initialCards.forEach(renderCards);
-}
+  initialCards.forEach(element => {
+    const card = createCard(element);
+    renderCards(card, element);
+
+  });
+} 
 
 //добавление фото
-function addNewPlace(evt) {
+function addNewCard(evt) {
   evt.preventDefault();
 
-  const userCard =  template.querySelector('.element').cloneNode(true);
-  userCard.querySelector('.element__title').textContent = placeInput.value;
-  userCard.querySelector('.element__image').src = linkInput.value;
-  userCard.querySelector('.element__image').alt = placeInput.value;
+  const newCard = initialCards.push({
+    name: nameInput.value,
+    link: linkInput.value
+  });
+  //createCard(element);
+  //renderCards();
 
-  list.prepend(userCard);
-  addListener(userCard);
+  console.log(initialCards);
   closePopup(popupElement); 
   placeInput.value = '';
   linkInput.value = '';
@@ -141,7 +151,7 @@ popupProfileClose.addEventListener('click', () => closePopup(popupProfile));
 formElement.addEventListener('submit', submitHandler);
 popupElementAdd.addEventListener('click', () => openPopup(popupElement));
 popupElementClose.addEventListener('click', () => closePopup(popupElement));
-formElementCards.addEventListener('submit', addNewPlace);
+formElementCards.addEventListener('submit', addNewCard);
 popupImageClose.addEventListener('click', () => closePopup(popupimageView));
 
 render();
