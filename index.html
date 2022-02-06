@@ -27,15 +27,15 @@
   <footer class="footer">
     <p class="footer__author">&copy; 2022 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_profile">
     <div class="popup__window">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_profile" action="#" method="get" name="popup">
         <input type="text" name="name" class="popup__input popup__input_type_name">
         <input type="text" name="description" class="popup__input popup__input_type_description">
-        <button class="popup__save-button" type="submit" aria-label="сохранить">Сохранить</button>
+        <button class="popup__save-button popup__save-button_profile" type="submit" aria-label="сохранить">Сохранить</button>
       </form>
-      <button class="popup__close-button" type="button" aria-label="закрыть окно"></button>
+      <button class="popup__close-button popup__close-button_profile" type="button" aria-label="закрыть окно"></button>
     </div>
   </div>
   <div class="popup popup_element">
@@ -59,15 +59,11 @@
       </div>
     </li>
   </template>
-<<<<<<< Updated upstream
-  <div class="imageView">
-=======
   <div class="imageView popup popup__imageView">
->>>>>>> Stashed changes
     <figure class="imageView__figure">
       <img class="imageView__image" src="#" alt="#"/>
       <figcaption class="imageView__caption">подпись</figcaption>
-      <button class="imageView__close-button" type="button" aria-label="закрыть изображение"></button>
+      <button class="popup__close-button popup__close-button_imageView" type="button" aria-label="закрыть изображение"></button>
     </figure>
   </div>
   <script src="./scripts/index.js"></script>
