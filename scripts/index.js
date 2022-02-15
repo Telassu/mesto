@@ -26,13 +26,13 @@ const initialCards = [
 ]; 
 
 //переменные
-const popup = document.querySelector('.popup');
+
 const popupProfileEdit = document.querySelector('.profile__edit-button');
 const popupProfileClose = document.querySelector('.popup__close-button_profile');
 const popupProfile = document.querySelector('.popup_profile');
-const formElement = document.querySelector('.popup__form_profile');
-const nameInput = formElement.querySelector('.popup__input_type_name');
-const jobInput = formElement.querySelector('.popup__input_type_description');
+const formElementProfile = document.querySelector('.popup__form_profile');
+const nameInput = formElementProfile.querySelector('.popup__input_type_name');
+const jobInput = formElementProfile.querySelector('.popup__input_type_description');
 const profileName = document.querySelector('.profile-info__name');
 const profileJob = document.querySelector('.profile-info__description');
 const template = document.querySelector('.element__template').content;
@@ -49,14 +49,15 @@ const imageOnClick = document.querySelector('.imageView__image');
 const imageTextOnClick = document.querySelector('.imageView__caption');
 
 //функции
-
 //открытие и закрытие попапов 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  addListenerEsc(popup); 
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  removeListenerEsc(popup);  
 }
 
 function openProfilePopup() {  
@@ -65,6 +66,32 @@ function openProfilePopup() {
   
   openPopup(popupProfile);
 }
+
+//закрытие по клавише ESC
+const closeEsc = (evt) => {
+  if (evt.key === "Escape") {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
+};
+
+function addListenerEsc (popup) {
+  document.addEventListener('keydown', closeEsc);
+  popup.addEventListener('click', closeOverlay);
+};
+
+const removeListenerEsc = (popup) => {
+  document.removeEventListener('keydown', closeEsc);
+  popup.removeEventListener('click', closeOverlay);
+};
+
+//закрытие по клику на оверлей
+const closeOverlay = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
+};
 
 //изменение профиля
 function submitHandler (evt) {
@@ -134,8 +161,8 @@ function handleLike(event) {
 }
 
 //увеличение картинки
-function openImage (e) {
-  const cardImg = e.target.closest('.element__image');
+function openImage (evt) {
+  const cardImg = evt.target.closest('.element__image');
     imageOnClick.src = cardImg.src;
     imageOnClick.alt = cardImg.alt;
     imageTextOnClick.textContent = cardImg.alt;
@@ -147,10 +174,12 @@ function openImage (e) {
 
 popupProfileEdit.addEventListener('click', openProfilePopup);
 popupProfileClose.addEventListener('click', () => closePopup(popupProfile));
-formElement.addEventListener('submit', submitHandler);
+formElementProfile.addEventListener('submit', submitHandler);
 popupElementAdd.addEventListener('click', () => openPopup(popupElement));
 popupElementClose.addEventListener('click', () => closePopup(popupElement));
 formElementCards.addEventListener('submit', addNewCard);
 popupImageClose.addEventListener('click', () => closePopup(popupimageView));
+
+
 
 render();

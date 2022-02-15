@@ -18,6 +18,11 @@
   cursor: pointer;
 }
 
+.popup__save-button:disabled {
+  border: 1px solid #000;
+  opacity: .2;
+}
+
 @media screen and (max-width: 768px) {
   .popup__save-button {
     width: 238px;

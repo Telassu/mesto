@@ -30,10 +30,14 @@
   <div class="popup popup_profile">
     <div class="popup__window">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form popup__form_profile" action="#" method="get" name="popup">
-        <input type="text" name="name" class="popup__input popup__input_type_name">
-        <input type="text" name="description" class="popup__input popup__input_type_description">
-        <button class="popup__save-button popup__save-button_profile" type="submit" aria-label="сохранить">Сохранить</button>
+      <form class="popup__form popup__form_profile" action="#" method="get" name="popup" novalidate>
+        <fieldset class="popup__fieldset popup__fieldset_profile">
+          <input type="text" name="name" id="name" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
+          <span class="popup__input-error popup__input-error_name"></span>
+          <input type="text" name="description" id="description" class="popup__input popup__input_type_description" minlength="2" maxlength="200" required>
+          <span class="popup__input-error popup__input-description"></span>
+          <button class="popup__save-button popup__save-button_profile" type="submit" aria-label="сохранить">Сохранить</button>
+      </fieldset>
       </form>
       <button class="popup__close-button popup__close-button_profile" type="button" aria-label="закрыть окно"></button>
     </div>
@@ -41,10 +45,14 @@
   <div class="popup popup_element">
     <div class="popup__window">
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_element" action="#" method="get" name="popup">
-        <input type="text" name="place" class="popup__input popup__input_type_place" placeholder="Название">
-        <input type="text" name="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку">
-        <button class="popup__save-button popup__save-button_element" type="submit" aria-label="сохранить">Сохранить</button>
+      <form class="popup__form popup__form_element" action="#" method="get" name="popup" novalidate>
+        <fieldset class="popup__fieldset popup__fieldset_element">
+          <input type="text" id="place" name="place" class="popup__input popup__input_type_place" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-error popup__input-error_place"></span>
+          <input type="url" id="link" name="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error popup__input-error_link"></span>
+          <button class="popup__save-button popup__save-button_element" type="submit" aria-label="сохранить">Сохранить</button>
+      </fieldset>
       </form>
       <button class="popup__close-button popup__close-button_element" type="button" aria-label="закрыть окно"></button>
     </div>
@@ -67,5 +75,6 @@
     </figure>
   </div>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

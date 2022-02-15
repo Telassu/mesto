@@ -12,7 +12,7 @@
 }
 
 .popup__input:focus {
-  color: #55d;
+  border: #55d;
 }
 
 @media screen and (max-width: 768px) {
