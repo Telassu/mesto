@@ -1,53 +1,58 @@
-const formInput = document.querySelectorAll('.popup__input');
-const form = document.querySelector('.popup__form');
+const InputList = Array.from(document.querySelectorAll('.popup__text'));
 const formError = document.querySelectorAll('.popup__input-error');
-const button = document.querySelector('.popup__save-button');
+const buttonList = document.querySelectorAll('.popup__save-button');
+const formList = document.querySelectorAll('.popup__form');
 
-formInput.forEach(input => {
-  input.addEventListener('input', function () {
-    if (!input.validity.valid) {
-      showError(input, input.validationMessage);           
+console.log(formList);
+
+InputList.forEach(inputElement => {
+  inputElement.addEventListener('input', function () {
+    if (!inputElement.validity.valid) {
+      showError(inputElement, inputElement.validationMessage);   
     }
     else {
-      hideError(input);
+      hideError(inputElement);
     }
   });
 });
 
-const showError = (input, errorMessage) => {
-  input.classList.add('popup__input-error');
+const showError = (inputElement, errorMessage) => {
   formError.forEach(error => {
-    error.classList.add('popup__input-error_active');
+    inputElement.classList.add('popup__input-error_type');
+    error.classList.add('popup__input-error_type_active');
     error.textContent = errorMessage;
   });
-  button.setAttribute('disabled', '');
+  buttonList.forEach(button => {
+    button.setAttribute('disabled', '');
+  });
 };
 
-const hideError = (input) => {
-  input.classList.remove('form__input_type_error');
+const hideError = (inputElement) => {
+  inputElement.classList.remove('popup__input-error_type');
   formError.forEach(error => {
-  error.classList.remove('form__input-error_active');
+  error.classList.remove('popup__input-error_active');
   error.textContent = '';
   });
-  button.removeAttribute('disabled');
+  buttonList.forEach(button => {
+    button.removeAttribute('disabled');
+  });
 };
 
-
-form.addEventListener('submit', function (evt) {
-  evt.preventDefault();
+const enableValidation = () => {
+const formList = Array.from(document.querySelectorAll('.form'));
+formList.forEach((formElement) => {
+  formElement.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+  });  
 });
+}
 
 
-//const buttonSave = Array.from(document.querySelectorAll('.popup__save-button'));
-
-  //button.setAttribute('disabled', '');
-  //button.classList.add(disabledButtonClass);
-//}
-//const checkButtonValidity = ({ disabledButtonClass }, form, button) => {
-  //if (form.checkValidity()) {
-    //  button.removeAttribute('disabled');
-      //button.classList.remove(disabledButtonClass);
- // } else {
-   //   disableButton(disabledButtonClass, button);
-  //}
-//}
+enableValidation({
+  formList: '.popup__form',
+  inputList: '.popup__text',
+  buttonList: '.popup__save-button',
+  inactiveButtonList: 'popup__save-button_disabled',
+  formError: 'popup__input-error_type',
+  errorClass: 'popup__input-error_type_active'
+}); 

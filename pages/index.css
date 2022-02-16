@@ -27,10 +27,10 @@
 @import url(../blocks/popup/__fieldset/popup__fieldset.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__text/popup__text.css);
+@import url(../blocks/popup/__span-input/popup__span-input.css);
 @import url(../blocks/popup/__save-button/popup__save-button.css);
-@import url(../blocks/popup/__save-button/_disabled/popup__save-button_disabled.css);
 @import url(../blocks/popup/__input/popup__input.css);
-@import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__window/popup__window.css);
 @import url(../blocks/imageView/imageView.css);
 @import url(../blocks/imageView/__image/imageView__image.css);
