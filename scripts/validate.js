@@ -1,58 +1,78 @@
-const InputList = Array.from(document.querySelectorAll('.popup__text'));
-const formError = document.querySelectorAll('.popup__input-error');
-const buttonList = document.querySelectorAll('.popup__save-button');
-const formList = document.querySelectorAll('.popup__form');
+const option = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: 'popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
 
-console.log(formList);
-
-InputList.forEach(inputElement => {
-  inputElement.addEventListener('input', function () {
-    if (!inputElement.validity.valid) {
-      showError(inputElement, inputElement.validationMessage);   
+//валидность форм
+function inValid (formElement, inputElement) {
+    if (!inputElement.validity.valid) {      
+      showErrorValid(formElement, inputElement, inputElement.validationMessage);
     }
-    else {
-      hideError(inputElement);
+    else {      
+      hideErrorValid(formElement, inputElement);      
     }
-  });
-});
+};
 
-const showError = (inputElement, errorMessage) => {
-  formError.forEach(error => {
-    inputElement.classList.add('popup__input-error_type');
-    error.classList.add('popup__input-error_type_active');
-    error.textContent = errorMessage;
-  });
-  buttonList.forEach(button => {
-    button.setAttribute('disabled', '');
+//включение ошибки
+function showErrorValid (formElement, inputElement, errorMessage) {
+  const errorElement = formElement.querySelector(`.${inputElement.name}-input-error`);
+  console.log(errorElement);
+  inputElement.classList.add(option.inputErrorClass);
+  errorElement.classList.add(option.errorClass);  
+  errorElement.textContent = errorMessage;
+};
+
+//выключение ошибки
+function hideErrorValid (formElement, inputElement) {
+  const errorElement = formElement.querySelector(`.${inputElement.name}-input-error`);
+  inputElement.classList.remove(option.inputErrorClass);
+  errorElement.classList.remove(option.errorClass);
+  errorElement.textContent = ''; 
+  
+};
+
+//сбор инпутов
+function setEventListeners (formElement) {
+  const inputSelector = Array.from(formElement.querySelectorAll('.popup__input'));  
+  const buttonElement = formElement.querySelector('.popup__save-button');  
+  toggleButtonState(inputSelector, buttonElement);
+  inputSelector.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      inValid(formElement, inputElement);
+      toggleButtonState(inputSelector, buttonElement);
+    });
   });
 };
 
-const hideError = (inputElement) => {
-  inputElement.classList.remove('popup__input-error_type');
-  formError.forEach(error => {
-  error.classList.remove('popup__input-error_active');
-  error.textContent = '';
-  });
-  buttonList.forEach(button => {
-    button.removeAttribute('disabled');
+
+//кнопка
+function toggleButtonState(inputSelector, buttonElement) {    
+  if (hasInvalidInput(inputSelector)) {    
+    buttonElement.setAttribute('disabled', '');
+  } else {
+    buttonElement.removeAttribute('disabled');
+  }
+};
+
+function hasInvalidInput(inputSelector) {  
+  return inputSelector.some(inputElement => {     
+    return !inputElement.validity.valid;
   });
 };
 
-const enableValidation = () => {
-const formList = Array.from(document.querySelectorAll('.form'));
-formList.forEach((formElement) => {
-  formElement.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-  });  
-});
-}
+function enableValidation () {
+  const formSelector = document.querySelectorAll('.popup__form');
+  formSelector.forEach((formElement) => {
+    formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
 
+      setEventListeners(formElement);
+    });
+  });
+};
 
-enableValidation({
-  formList: '.popup__form',
-  inputList: '.popup__text',
-  buttonList: '.popup__save-button',
-  inactiveButtonList: 'popup__save-button_disabled',
-  formError: 'popup__input-error_type',
-  errorClass: 'popup__input-error_type_active'
-}); 
+enableValidation(option);

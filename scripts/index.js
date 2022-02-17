@@ -51,8 +51,9 @@ const imageTextOnClick = document.querySelector('.imageView__caption');
 //функции
 //открытие и закрытие попапов 
 function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  addListenerEsc(popup); 
+  popup.classList.add('popup_opened');   
+  addListenerEsc(popup);
+  setEventListeners(popup);
 }
 
 function closePopup(popup) {

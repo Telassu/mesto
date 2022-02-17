@@ -30,18 +30,12 @@
   <div class="popup popup_profile">
     <div class="popup__window">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form popup__form_profile" action="#" method="get" name="popup" novalidate>
-        <fieldset class="popup__fieldset popup__fieldset_profile">
-          <div class="popup__input">
-            <input type="text" name="name" id="name" class="popup__text popup__input_type_name" minlength="2" maxlength="40" required>
-            <span class="popup__span-input popup__input-error name-input-error"></span>
-          </div>
-          <div class="popup__input">
-            <input type="text" name="description" id="description" class="popup__text popup__input_type_description" minlength="2" maxlength="200" required>
-            <span class="popup__span-input popup__input-error description-input-error"></span>
-          </div>
-          <button class="popup__save-button popup__save-button_profile" type="submit" aria-label="сохранить">Сохранить</button>
-      </fieldset>
+      <form class="popup__form popup__form_profile" action="#" method="get" name="popup" novalidate>        
+          <input type="text" name="name" id="name" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
+          <span class="popup__input-error name-input-error"></span>
+          <input type="text" name="description" id="description" class="popup__input popup__input_type_description" minlength="2" maxlength="200" required>
+          <span class="popup__input-error description-input-error"></span>
+          <button class="popup__save-button popup__save-button_profile" type="submit" aria-label="сохранить">Сохранить</button>      
       </form>
       <button class="popup__close-button popup__close-button_profile" type="button" aria-label="закрыть окно"></button>
     </div>
@@ -50,17 +44,11 @@
     <div class="popup__window">
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_element" action="#" method="get" name="popup" novalidate>
-        <fieldset class="popup__fieldset popup__fieldset_element">
-          <div class="popup__input">
-            <input type="text" id="place" name="place" class="popup__text popup__input_type_place" placeholder="Название" minlength="2" maxlength="30" required>
-            <span class="popup__span-input popup__input-error place-input-error"></span>
-          </div>
-          <div class="popup__input">
-            <input type="url" id="link" name="link" class="popup__text popup__input_type_link" placeholder="Ссылка на картинку" required>
-            <span class="popup__span-input popup__input-error link-input-error"></span>
-          </div>
-          <button class="popup__save-button popup__save-button_element" type="submit" aria-label="сохранить">Сохранить</button>
-      </fieldset>
+        <input type="text" id="place" name="place" class="popup__input popup__input_type_place" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="popup__input-error place-input-error"></span>
+        <input type="url" id="link" name="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" required>
+        <span class="popup__input-error link-input-error"></span>
+        <button class="popup__save-button popup__save-button_element" type="submit" aria-label="сохранить">Сохранить</button>      
       </form>
       <button class="popup__close-button popup__close-button_element" type="button" aria-label="закрыть окно"></button>
     </div>
@@ -82,7 +70,7 @@
       <button class="popup__close-button popup__close-button_imageView" type="button" aria-label="закрыть изображение"></button>
     </figure>
   </div>
-  <script src="./scripts/index.js"></script>
   <script src="./scripts/validate.js"></script>
+  <script src="./scripts/index.js"></script>  
 </body>
 </html>
