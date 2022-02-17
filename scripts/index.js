@@ -51,14 +51,18 @@ const imageTextOnClick = document.querySelector('.imageView__caption');
 //функции
 //открытие и закрытие попапов 
 function openPopup(popup) {
-  popup.classList.add('popup_opened');   
+  popup.classList.add('popup_opened');
   addListenerEsc(popup);
   setEventListeners(popup);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  removeListenerEsc(popup);  
+  removeListenerEsc(popup);
+  const inputList = popup.querySelectorAll('.popup__input');
+  inputList.forEach((inputElement) => {
+    hideErrorValid (popup, inputElement);
+  })
 }
 
 function openProfilePopup() {  
@@ -105,7 +109,7 @@ function submitHandler (evt) {
 //создание карточки
 function createCard(element) {
 
-  const cardElement = template.querySelector('.element').cloneNode(true); 
+  const cardElement = template.querySelector('.element').cloneNode(true);
   cardElement.querySelector('.element__title').textContent = element.name;
   cardElement.querySelector('.element__image').alt = element.name;
   cardElement.querySelector('.element__image').src = element.link;
@@ -124,10 +128,10 @@ function addNewCard(evt) {
     link: linkInput.value
   };
   
-  const newUserCard = createCard(userCard);  
+  const newUserCard = createCard(userCard);
   renderCards(newUserCard, list);
 
-  closePopup(popupElement); 
+  closePopup(popupElement);
   placeInput.value = '';
   linkInput.value = '';
 }

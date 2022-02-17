@@ -8,19 +8,18 @@ const option = {
 };
 
 //валидность форм
-function inValid (formElement, inputElement) {
+function checkValid (formElement, inputElement) {
     if (!inputElement.validity.valid) {      
       showErrorValid(formElement, inputElement, inputElement.validationMessage);
     }
     else {      
-      hideErrorValid(formElement, inputElement);      
+      hideErrorValid(formElement, inputElement);
     }
 };
 
 //включение ошибки
 function showErrorValid (formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`.${inputElement.name}-input-error`);
-  console.log(errorElement);
   inputElement.classList.add(option.inputErrorClass);
   errorElement.classList.add(option.errorClass);  
   errorElement.textContent = errorMessage;
@@ -37,12 +36,12 @@ function hideErrorValid (formElement, inputElement) {
 
 //сбор инпутов
 function setEventListeners (formElement) {
-  const inputSelector = Array.from(formElement.querySelectorAll('.popup__input'));  
-  const buttonElement = formElement.querySelector('.popup__save-button');  
+  const inputSelector = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__save-button');
   toggleButtonState(inputSelector, buttonElement);
   inputSelector.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      inValid(formElement, inputElement);
+      checkValid(formElement, inputElement);
       toggleButtonState(inputSelector, buttonElement);
     });
   });
@@ -50,8 +49,8 @@ function setEventListeners (formElement) {
 
 
 //кнопка
-function toggleButtonState(inputSelector, buttonElement) {    
-  if (hasInvalidInput(inputSelector)) {    
+function toggleButtonState(inputSelector, buttonElement) {
+  if (hasInvalidInput(inputSelector)) {
     buttonElement.setAttribute('disabled', '');
   } else {
     buttonElement.removeAttribute('disabled');
@@ -59,7 +58,7 @@ function toggleButtonState(inputSelector, buttonElement) {
 };
 
 function hasInvalidInput(inputSelector) {  
-  return inputSelector.some(inputElement => {     
+  return inputSelector.some(inputElement => {
     return !inputElement.validity.valid;
   });
 };
