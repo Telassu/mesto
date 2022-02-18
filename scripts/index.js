@@ -59,10 +59,7 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   removeListenerEsc(popup);
-  const inputList = popup.querySelectorAll('.popup__input');
-  inputList.forEach((inputElement) => {
-    hideErrorValid (popup, inputElement);
-  })
+  cleanInput(popup);
 }
 
 function openProfilePopup() {  
@@ -77,7 +74,7 @@ const closeEsc = (evt) => {
   if (evt.key === "Escape") {
     const popup = document.querySelector('.popup_opened');
     closePopup(popup);
-  }
+  };
 };
 
 function addListenerEsc (popup) {
@@ -97,6 +94,15 @@ const closeOverlay = (evt) => {
     closePopup(popup);
   }
 };
+
+//очищение поля валидации
+function cleanInput(popup) {
+  const inputList = popup.querySelectorAll('.popup__input');
+  inputList.forEach((inputElement) => {
+    hideErrorValid (popup, inputElement);
+    inputElement.value = '';
+  });
+}
 
 //изменение профиля
 function submitHandler (evt) {
@@ -132,8 +138,7 @@ function addNewCard(evt) {
   renderCards(newUserCard, list);
 
   closePopup(popupElement);
-  placeInput.value = '';
-  linkInput.value = '';
+  evt.target.reset();
 }
 
 function renderCards(card, wrap) {
