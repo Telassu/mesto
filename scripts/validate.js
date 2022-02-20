@@ -30,8 +30,7 @@ function hideErrorValid (formElement, inputElement) {
   const errorElement = formElement.querySelector(`.${inputElement.name}-input-error`);
   inputElement.classList.remove(option.inputErrorClass);
   errorElement.classList.remove(option.errorClass);
-  errorElement.textContent = ''; 
-  
+  errorElement.textContent = '';
 };
 
 //сбор инпутов
@@ -63,14 +62,22 @@ function hasInvalidInput(inputSelector) {
   });
 };
 
+//очищение поля валидации
+function cleanInput(popup) {
+  const inputList = popup.querySelectorAll('.popup__input');
+  inputList.forEach((inputElement) => {
+    hideErrorValid (popup, inputElement);
+    inputElement.value = '';
+  });
+}
+
 function enableValidation () {
-  const formSelector = document.querySelectorAll('.popup__form');
-  formSelector.forEach((formElement) => {
+  const formSelector = document.querySelectorAll('.popup__form');  
+  formSelector.forEach((formElement) => {    
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
-
-      setEventListeners(formElement);
-    });
+    });    
+    setEventListeners (formElement);
   });
 };
 

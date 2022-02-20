@@ -52,8 +52,8 @@ const imageTextOnClick = document.querySelector('.imageView__caption');
 //открытие и закрытие попапов 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  addListenerEsc(popup);
-  setEventListeners(popup);
+  addListenerEsc(popup);  
+  enableValidation (popup);
 }
 
 function closePopup(popup) {
@@ -94,15 +94,6 @@ const closeOverlay = (evt) => {
     closePopup(popup);
   }
 };
-
-//очищение поля валидации
-function cleanInput(popup) {
-  const inputList = popup.querySelectorAll('.popup__input');
-  inputList.forEach((inputElement) => {
-    hideErrorValid (popup, inputElement);
-    inputElement.value = '';
-  });
-}
 
 //изменение профиля
 function submitHandler (evt) {
