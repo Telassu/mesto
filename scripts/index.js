@@ -53,7 +53,6 @@ const imageTextOnClick = document.querySelector('.imageView__caption');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   addListenerEsc(popup);  
-  enableValidation (popup);
 }
 
 function closePopup(popup) {
