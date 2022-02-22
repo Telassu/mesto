@@ -47,6 +47,7 @@ const popupimageView = document.querySelector('.imageView');
 const popupImageClose = document.querySelector('.popup__close-button_imageView');
 const imageOnClick = document.querySelector('.imageView__image');
 const imageTextOnClick = document.querySelector('.imageView__caption');
+const buttonSaveElement = popupElement.querySelector('.popup__save-button')
 
 //функции
 //открытие и закрытие попапов 
@@ -129,6 +130,7 @@ function addNewCard(evt) {
 
   closePopup(popupElement);
   evt.target.reset();
+  buttonSaveElement.disabled=true;
 }
 
 function renderCards(card, wrap) {
@@ -139,7 +141,6 @@ function render() {
   initialCards.forEach(element => {
     const card = createCard(element);
     renderCards(card, list);
-
   });
 } 
 
