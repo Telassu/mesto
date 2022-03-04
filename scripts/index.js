@@ -1,29 +1,5 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
+import card from "./card.js";
+
 
 //переменные
 
@@ -104,17 +80,17 @@ function submitHandler (evt) {
 }
 
 //создание карточки
-function createCard(element) {
+//function createCard(element) {
 
-  const cardElement = template.querySelector('.element').cloneNode(true);
-  cardElement.querySelector('.element__title').textContent = element.name;
-  cardElement.querySelector('.element__image').alt = element.name;
-  cardElement.querySelector('.element__image').src = element.link;
+  //const cardElement = template.querySelector('.element').cloneNode(true);
+  //cardElement.querySelector('.element__title').textContent = element.name;
+  //cardElement.querySelector('.element__image').alt = element.name;
+  //cardElement.querySelector('.element__image').src = element.link;
 
-  addListener(cardElement);
+  //addListener(cardElement);
 
-  return cardElement;
-}
+  //return cardElement;
+//}
 
 //добавление фото
 function addNewCard(evt) {
@@ -125,7 +101,7 @@ function addNewCard(evt) {
     link: linkInput.value
   };
   
-  const newUserCard = createCard(userCard);
+  const newUserCard = card.generateCard(userCard);
   renderCards(newUserCard, list);
 
   closePopup(popupElement);
@@ -133,33 +109,33 @@ function addNewCard(evt) {
   buttonSaveElement.disabled=true;
 }
 
-function renderCards(card, wrap) {
-  list.prepend(card);
-}
+//function renderCards(card, wrap) {
+  //list.prepend(card);
+//}
 
-function render() {
-  initialCards.forEach(element => {
-    const card = createCard(element);
-    renderCards(card, list);
-  });
-} 
+//function render() {
+  //initialCards.forEach(element => {
+    //const card = createCard(element);
+    //renderCards(card, list);
+  //});
+//} 
 
 //функция вызова
 function addListener(el) {
-  el.querySelector('.element__like').addEventListener('click', handleLike);
-  el.querySelector('.element__delete').addEventListener('click', handleDelete);
+  //el.querySelector('.element__like').addEventListener('click', handleLike);
+  //el.querySelector('.element__delete').addEventListener('click', handleDelete);
   el.querySelector('.element__image').addEventListener('click', openImage);
 }
 
 //удаление фото
-function handleDelete(event) {
-  event.target.closest('.element').remove();
-}
+//function handleDelete(event) {
+  //event.target.closest('.element').remove();
+//}
 
 //like'и
-function handleLike(event) {
- event.target.closest('.element__like').classList.toggle('element__like_active');
-}
+//function handleLike(event) {
+ //event.target.closest('.element__like').classList.toggle('element__like_active');
+//}
 
 //увеличение картинки
 function openImage (evt) {
@@ -183,4 +159,4 @@ popupImageClose.addEventListener('click', () => closePopup(popupimageView));
 
 
 
-render();
+//render();
