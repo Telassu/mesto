@@ -1,46 +1,14 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-export default class Card {
+export class Card {
   constructor (data, cardSelector) {
-    this._link = data.link;
     this._name = data.name;
-    this.cardSelector = cardSelector;
+    this._link = data.link;
+    this._cardSelector = cardSelector;
   }
-/*- принимает в конструктор её данные и селектор её template-элемента;
-- содержит приватные методы, которые работают с разметкой, устанавливают слушателей событий;
-- содержит приватные методы для каждого обработчика;
-- содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.*/
-    
     //методы
 
     _getTemplate () {
       const cardElement = document
-      .querySelector('.element__template')
+      .querySelector(this._cardSelector)
       .content
       .querySelector('.element')
       .cloneNode(true);
@@ -67,6 +35,10 @@ export default class Card {
       this._element.querySelector('.element__like').addEventListener('click', () => {
         this._handleLike()
       });
+
+      this._element.querySelector('.element__image').addEventListener('click', () => {
+        this._openImage();
+      });
     };
 
     _handleDelete () {
@@ -77,11 +49,7 @@ export default class Card {
       this._element.querySelector('.element__like').classList.toggle('element__like_active');
     };
 
+    _openImage () {
+      console.log('hello world');    
+    }
   }
-
-  initialCards.forEach ((item) => {
-    const card = new Card (item);
-    const cardElement = card.generateCard();
-     
-    document.querySelector('.elements__list').prepend(cardElement);
-   });
