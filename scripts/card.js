@@ -1,3 +1,5 @@
+import {openPopup} from './index.js';
+
 export class Card {
   constructor (data, cardSelector) {
     this._name = data.name;
@@ -5,7 +7,7 @@ export class Card {
     this._cardSelector = cardSelector;
   }
     //методы
-
+//template-элемент
     _getTemplate () {
       const cardElement = document
       .querySelector(this._cardSelector)
@@ -15,7 +17,7 @@ export class Card {
     
       return cardElement;
     }
-
+//карточка
     generateCard () {
       this._element = this._getTemplate();
       this._setEventListeners ();
@@ -26,7 +28,7 @@ export class Card {
 
       return this._element;
     }
-
+//слушатели
     _setEventListeners () {
       this._element.querySelector('.element__delete').addEventListener('click', () => {
         this._handleDelete()
@@ -36,7 +38,7 @@ export class Card {
         this._handleLike()
       });
 
-      this._element.querySelector('.element__image').addEventListener('click', () => {
+     this._element.querySelector('.element__image').addEventListener('click', () => {
         this._openImage();
       });
     };
@@ -50,6 +52,14 @@ export class Card {
     };
 
     _openImage () {
-      console.log('hello world');    
+      const imageOnClick = document.querySelector('.imageView__image');
+      const imageTextOnClick = document.querySelector('.imageView__caption');
+      const popupimageView = document.querySelector('.imageView')
+
+      imageOnClick.src = this._link;
+      imageOnClick.alt = this._name;
+      imageTextOnClick.textContent = this._name;
+
+      openPopup(popupimageView);
     }
   }

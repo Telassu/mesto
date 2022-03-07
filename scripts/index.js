@@ -1,4 +1,5 @@
 import {Card} from "./card.js";
+import {FormValidator} from './FormValidator.js';
 
 const initialCards = [
   {
@@ -44,15 +45,12 @@ const placeInput = document.querySelector('.popup__input_type_place');
 const linkInput = document.querySelector('.popup__input_type_link');
 const popupElement = document.querySelector('.popup_element');
 const popupElementClose = document.querySelector('.popup__close-button_element');
-const popupimageView = document.querySelector('.imageView');
 const popupImageClose = document.querySelector('.popup__close-button_imageView');
-const imageOnClick = document.querySelector('.imageView__image');
-const imageTextOnClick = document.querySelector('.imageView__caption');
 const buttonSaveElement = popupElement.querySelector('.popup__save-button')
 
 //функции
 //открытие и закрытие попапов 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   addListenerEsc(popup);  
 }
@@ -96,6 +94,14 @@ const closeOverlay = (evt) => {
   }
 };
 
+//валидация форм
+const profileValid = new FormValidator (nameInput, jobInput, formElementProfile);
+profileValid.enableValidation();
+
+//const cardValid = new FormValidator (data, formElementCards);
+//cardValid.enableValidation();
+
+
 //изменение профиля
 function submitHandler (evt) {
   evt.preventDefault();
@@ -137,25 +143,6 @@ function render(card, wrap) {
   list.prepend(card);
 }
 
-
-//функция вызова
-//function addListener(el) {
-  //el.querySelector('.element__like').addEventListener('click', handleLike);
-  //el.querySelector('.element__delete').addEventListener('click', handleDelete);
-  //el.querySelector('.element__image').addEventListener('click', openImage);
-//}
-
-//увеличение картинки
-/*const openImage = () => {
-  //const cardImg = evt.target.closest('.element__image');
-
-    imageOnClick.src = cardImg.src;
-    imageOnClick.alt = cardImg.alt;
-    imageTextOnClick.textContent = cardImg.alt;
-   
-    openPopup(popupimageView);
-}
-*/
 //вызовы
 
 popupProfileEdit.addEventListener('click', openProfilePopup);
