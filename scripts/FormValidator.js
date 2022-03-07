@@ -1,11 +1,11 @@
 export class FormValidator {
-  constructor (data, formElement) {
-    this._inputElement = data.inputElement;
-    this._submitButttonSelector = data.submitButttonSelector;
-    this._inputErrorClass = data.inputErrorClass;
-    this._errorClass = data.errorClass;
+  constructor (inputElement, formElement) {
+    //this._submitButttonSelector = data.submitButttonSelector;
+    //this._inputErrorClass = data.inputErrorClass;
+    //this._errorClass = data.errorClass;    
+    this._inputElement = inputElement;
     this._formElement = formElement;
-  };
+};
 
 //const option = {
   //formSelector: '.popup__form',
@@ -23,9 +23,9 @@ export class FormValidator {
 */
 
 //включение ошибки
-_showErrorValid (inputElement, errorMessage) {
-  const errorElement = this._formElement.querySelector(`.${inputElement.name}-input-error`);
-  inputElement.classList.add(this._inputErrorClass);
+_showErrorValid () {
+  const errorElement = this._formElement.querySelector(`.${this._inputElement.name}-input-error`);
+  this._inputElement.classList.add(this._inputErrorClass);
   errorElement.classList.add(this._errorClass);  
   errorElement.textContent = errorMessage;
 };
@@ -33,23 +33,24 @@ _showErrorValid (inputElement, errorMessage) {
 //выключение ошибки
 _hideErrorValid (inputElement) {
   const errorElement = this._formElement.querySelector(`.${inputElement.name}-input-error`);
-  inputElement.classList.remove(this._inputErrorClass);
+  this._inputElement.classList.remove(this._inputErrorClass);
   errorElement.classList.remove(this._errorClass);
   errorElement.textContent = '';
 };
 
 //валидность форм
-_checkValid (inputElement) {
-  if (!inputElement.validity.valid) {      
-    this._showErrorValid(inputElement, inputElement.validationMessage);
-  }
-  else {      
-    this._hideErrorValid(inputElement);
-  }
+_checkValid () {
+  console.log('меня видно!')
+//  if (!this._inputElement.validity.valid) {
+  //  this._showErrorValid(this._inputElement.validationMessage);
+  //}
+  //else {      
+   // this._hideErrorValid(inputElement);
+  //}
 };
 
 _hasInvalidInput(inputElement) {
-  return !inputElement.validity.valid;
+  return !this._inputElement.validity.valid;
 };
 
 //кнопка
@@ -63,22 +64,21 @@ _toggleButtonState(inputElement, submitButttonSelector) {
 
 //слушатели
 _setEventListeners () {
-  // this._toggleButtonState(inputElement, submitButttonSelector);
-   this._inputElement.addEventListener('input', () => {
-       _checkValid(inputElement);
-       _toggleButtonState(inputElement, submitButttonSelector);
-     });
-   };
+  this._inputElement.addEventListener('input', () => {
+    console.log('hello world!')
+    this._checkValid();
+    //this._toggleButtonState(inputElement, submitButttonSelector);
+  });
+};
 
 //очищение поля валидации
 _cleanInput(popup) {
-  _hideErrorValid (popup, inputElement);
+  this._hideErrorValid (popup, inputElement);
   this._inputElement.value = '';
 };
 
-enableValidation () {
-  this._formElement.addEventListener('submit', () => { 
+enableValidation () { 
     this._setEventListeners ();
-  });
+    console.log(this._inputElement)
 };
 };

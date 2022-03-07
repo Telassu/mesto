@@ -58,7 +58,7 @@ export function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   removeListenerEsc(popup);
-  cleanInput(popup);
+  //FormValidator.cleanInput(popup);
 }
 
 function openProfilePopup() {  
