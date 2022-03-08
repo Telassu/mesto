@@ -46,6 +46,7 @@ const linkInput = document.querySelector('.popup__input_type_link');
 const popupElement = document.querySelector('.popup_element');
 const popupElementClose = document.querySelector('.popup__close-button_element');
 const popupImageClose = document.querySelector('.popup__close-button_imageView');
+const popupimageView = document.querySelector('.imageView');
 const buttonSaveElement = popupElement.querySelector('.popup__save-button')
 
 //функции
@@ -95,12 +96,18 @@ const closeOverlay = (evt) => {
 };
 
 //валидация форм
-const profileValid = new FormValidator (nameInput, jobInput, formElementProfile);
-profileValid.enableValidation();
+const jobValid = new FormValidator (jobInput, formElementProfile);
+jobValid.enableValidation();
 
-//const cardValid = new FormValidator (data, formElementCards);
-//cardValid.enableValidation();
 
+const nameValid = new FormValidator (nameInput, formElementProfile);
+nameValid.enableValidation();
+
+const placeValid = new FormValidator (placeInput, formElementCards);
+placeValid.enableValidation();
+
+const linkValid = new FormValidator (linkInput, formElementCards);
+linkValid.enableValidation();
 
 //изменение профиля
 function submitHandler (evt) {

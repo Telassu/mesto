@@ -54,7 +54,7 @@ export class Card {
     _openImage () {
       const imageOnClick = document.querySelector('.imageView__image');
       const imageTextOnClick = document.querySelector('.imageView__caption');
-      const popupimageView = document.querySelector('.imageView')
+      const popupimageView = document.querySelector('.imageView');
 
       imageOnClick.src = this._link;
       imageOnClick.alt = this._name;

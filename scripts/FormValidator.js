@@ -1,8 +1,8 @@
 export class FormValidator {
   constructor (inputElement, formElement) {
-    //this._submitButttonSelector = data.submitButttonSelector;
-    //this._inputErrorClass = data.inputErrorClass;
-    //this._errorClass = data.errorClass;    
+  //  this._submitButttonSelector = formElement.submitButttonSelector;
+    this._inputErrorClass = inputElement.inputErrorClass;
+    this._errorClass = inputElement.errorClass;    
     this._inputElement = inputElement;
     this._formElement = formElement;
 };
@@ -23,7 +23,7 @@ export class FormValidator {
 */
 
 //включение ошибки
-_showErrorValid () {
+_showErrorValid (errorMessage) {
   const errorElement = this._formElement.querySelector(`.${this._inputElement.name}-input-error`);
   this._inputElement.classList.add(this._inputErrorClass);
   errorElement.classList.add(this._errorClass);  
@@ -31,8 +31,8 @@ _showErrorValid () {
 };
 
 //выключение ошибки
-_hideErrorValid (inputElement) {
-  const errorElement = this._formElement.querySelector(`.${inputElement.name}-input-error`);
+_hideErrorValid () {
+  const errorElement = this._formElement.querySelector(`.${this._inputElement.name}-input-error`);
   this._inputElement.classList.remove(this._inputErrorClass);
   errorElement.classList.remove(this._errorClass);
   errorElement.textContent = '';
@@ -41,44 +41,48 @@ _hideErrorValid (inputElement) {
 //валидность форм
 _checkValid () {
   console.log('меня видно!')
-//  if (!this._inputElement.validity.valid) {
-  //  this._showErrorValid(this._inputElement.validationMessage);
-  //}
-  //else {      
-   // this._hideErrorValid(inputElement);
-  //}
+  if (!this._inputElement.validity.valid) {
+   this._showErrorValid(this._inputElement.validationMessage);
+  }
+  else {      
+   this._hideErrorValid();
+  }
 };
 
-_hasInvalidInput(inputElement) {
-  return !this._inputElement.validity.valid;
+_hasInvalidInput() {
+  return inputList.some((inputElement) => {
+    return !this._inputElement.validity.valid;
+  });
 };
 
 //кнопка
-_toggleButtonState(inputElement, submitButttonSelector) {
-  if (this._hasInvalidInput(inputElement)) {
-    submitButttonSelector.setAttribute('disabled', '');
+_toggleButtonState() {
+  console.log('Это я! кнопкоотключатель!')
+  const submitButtonSelector = this._formElement.querySelector('.popup__save-button')
+  if (!this._inputElement.validity.valid) {
+    submitButtonSelector.setAttribute('disabled', '');
   } else {
-    submitButttonSelector.removeAttribute('disabled');
+    submitButtonSelector.removeAttribute('disabled');
   }
 };
 
 //слушатели
 _setEventListeners () {
+  console.log('Да?!')
   this._inputElement.addEventListener('input', () => {
-    console.log('hello world!')
     this._checkValid();
-    //this._toggleButtonState(inputElement, submitButttonSelector);
+    this._toggleButtonState();
   });
 };
 
 //очищение поля валидации
-_cleanInput(popup) {
-  this._hideErrorValid (popup, inputElement);
+_cleanInput() {
+  this._hideErrorValid ();
   this._inputElement.value = '';
 };
 
 enableValidation () { 
-    this._setEventListeners ();
-    console.log(this._inputElement)
+  this._setEventListeners ();
+  console.log('Я уже валидируюсь!')
 };
 };
