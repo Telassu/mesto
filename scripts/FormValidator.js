@@ -71,6 +71,7 @@ export class FormValidator {
     }); 
   }
 
+  //запуск валидации
   enableValidation() {
     this._setEventListener ();
   }
