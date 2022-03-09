@@ -17,6 +17,7 @@ export class Card {
     
     return cardElement;
   }
+
 //карточка
   generateCard () {
     this._element = this._getTemplate();
