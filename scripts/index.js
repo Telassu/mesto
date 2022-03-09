@@ -1,4 +1,4 @@
-import {Card} from "./card.js";
+import {Card} from "./Card.js";
 import {FormValidator} from './FormValidator.js';
 
 const initialCards = [
@@ -34,6 +34,7 @@ const popupProfileEdit = document.querySelector('.profile__edit-button');
 const popupProfileClose = document.querySelector('.popup__close-button_profile');
 const popupProfile = document.querySelector('.popup_profile');
 const formElementProfile = document.querySelector('.popup__form_profile');
+const inputsProfile = formElementProfile.querySelectorAll('.popup__input');
 const nameInput = formElementProfile.querySelector('.popup__input_type_name');
 const jobInput = formElementProfile.querySelector('.popup__input_type_description');
 const profileName = document.querySelector('.profile-info__name');
@@ -41,8 +42,7 @@ const profileJob = document.querySelector('.profile-info__description');
 const list = document.querySelector('.elements__list');
 const popupElementAdd = document.querySelector('.profile__add-button');
 const formElementCards = document.querySelector('.popup__form_element');
-const placeInput = document.querySelector('.popup__input_type_place');
-const linkInput = document.querySelector('.popup__input_type_link');
+const inputsCard = formElementCards.querySelectorAll('.popup__input');
 const popupElement = document.querySelector('.popup_element');
 const popupElementClose = document.querySelector('.popup__close-button_element');
 const popupImageClose = document.querySelector('.popup__close-button_imageView');
@@ -50,6 +50,15 @@ const popupimageView = document.querySelector('.imageView');
 const buttonSaveElement = popupElement.querySelector('.popup__save-button')
 
 //функции
+//валидация форм
+const profileValid = new FormValidator (inputsProfile, formElementProfile);
+profileValid.enableValidation();
+profileValid.cleanInput(popup);
+
+const cardValid = new FormValidator (inputsCard, formElementCards);
+cardValid.enableValidation();
+cardValid.cleanInput(popup);
+
 //открытие и закрытие попапов 
 export function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -59,7 +68,8 @@ export function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   removeListenerEsc(popup);
-  //FormValidator.cleanInput(popup);
+  cardValid.cleanInput(popup);
+  profileValid.cleanInput(popup);
 }
 
 function openProfilePopup() {  
@@ -73,7 +83,8 @@ function openProfilePopup() {
 const closeEsc = (evt) => {
   if (evt.key === "Escape") {
     const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
+    closePopup(popup);  
+    cardValid.cleanInput(popup);  
   };
 };
 
@@ -94,20 +105,6 @@ const closeOverlay = (evt) => {
     closePopup(popup);
   }
 };
-
-//валидация форм
-const jobValid = new FormValidator (jobInput, formElementProfile);
-jobValid.enableValidation();
-
-
-const nameValid = new FormValidator (nameInput, formElementProfile);
-nameValid.enableValidation();
-
-const placeValid = new FormValidator (placeInput, formElementCards);
-placeValid.enableValidation();
-
-const linkValid = new FormValidator (linkInput, formElementCards);
-linkValid.enableValidation();
 
 //изменение профиля
 function submitHandler (evt) {
