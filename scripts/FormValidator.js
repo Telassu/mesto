@@ -25,9 +25,7 @@ export class FormValidator {
   };
 
   //ввалидация
-  _checkValid (inputElement) {
-    console.log('Я валидация!') 
-    
+  _checkValid (inputElement) {    
     if (!inputElement.validity.valid) {       
       this._showErrorValid(inputElement, inputElement.validationMessage); 
     } 
@@ -44,8 +42,6 @@ export class FormValidator {
 
   //кнопка
   _toggleButtonState() { 
-    console.log('Приветики! Я - кнопка')
-    
     if (this._hasInvalidInput()) { 
       this._submitButton.setAttribute('disabled', ''); 
     } else { 
@@ -56,8 +52,6 @@ export class FormValidator {
 
   //слушатели
   _setEventListener() {
-    console.log('Приветики! Я - слушатель')
-
     this._inputList.forEach((inputElement) => { 
       inputElement.addEventListener('input', () => { 
         this._checkValid(inputElement); 
@@ -66,19 +60,17 @@ export class FormValidator {
     }); 
   }; 
 
-  //очищение инпутов
+  //очищение инпутов и снятие ошибок
   cleanInput() {
+    this._toggleButtonState();
     this._inputList.forEach((inputElement) => { 
       this._hideErrorValid (inputElement); 
       inputElement.value = ''; 
-    });
-    this._toggleButtonState(); 
+    }); 
   }
 
   //запуск валидации
   enableValidation() {
-    console.log('Приветики! Я - запуск валидации')
-
     this._setEventListener ();
   }
 };
