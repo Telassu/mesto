@@ -31,7 +31,6 @@ const initialCards = [
 //переменные
 
 const popupProfileEdit = document.querySelector('.profile__edit-button');
-const popupProfileClose = document.querySelector('.popup__close-button_profile');
 const popupProfile = document.querySelector('.popup_profile');
 const formProfile = document.querySelector('.popup__form_profile');
 const inputProfileList = formProfile.querySelectorAll('.popup__input');
@@ -46,11 +45,11 @@ const inputCardList = formCards.querySelectorAll('.popup__input');
 const placeInput = formCards.querySelector('.popup__input_type_place');
 const linkInput = formCards.querySelector('.popup__input_type_link');
 const popupCard = document.querySelector('.popup_element');
-const popupCardClose = document.querySelector('.popup__close-button_element');
-const popupImageClose = document.querySelector('.popup__close-button_imageView');
 const popupimageView = document.querySelector('.imageView');
 const imageOnClick = document.querySelector('.imageView__image');
 const imageTextOnClick = document.querySelector('.imageView__caption');
+const popups = document.querySelectorAll('.popup');
+
 
 //функции
 //валидация форм
@@ -62,7 +61,7 @@ const cardValid = new FormValidator (inputCardList, formCards);
 cardValid.enableValidation();
 
 //открытие и закрытие попапов 
-export function openPopup(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   addListenerEsc(popup);  
 }
@@ -73,7 +72,7 @@ function closePopup(popup) {
 }
 
 function openProfilePopup() {
-  profileValid.cleanInput(popup);
+  profileValid.cleanInput();
 
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -91,20 +90,23 @@ const closeEsc = (evt) => {
 
 function addListenerEsc (popup) {
   document.addEventListener('keydown', closeEsc);
-  popup.addEventListener('mousedown', closeOverlay);
 };
 
 const removeListenerEsc = (popup) => {
   document.removeEventListener('keydown', closeEsc);
-  popup.removeEventListener('mousedown', closeOverlay);
 };
 
 //закрытие по клику на оверлей
-const closeOverlay = (evt) => {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target);
-  }
-};
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+        closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup)
+    }
+});
+});
 
 //изменение профиля
 function handleProfileFormSubmit (evt) {
@@ -162,15 +164,12 @@ function handleCardClick (name, link) {
 
 //вызовы
 popupCardAddBtn.addEventListener('click', () => {
-  cardValid.cleanInput(popup);  
+  cardValid.cleanInput();  
   openPopup(popupCard);
 });
 popupProfileEdit.addEventListener('click', openProfilePopup);
-popupProfileClose.addEventListener('click', () => closePopup(popupProfile));
 formProfile.addEventListener('submit', handleProfileFormSubmit);
-popupCardClose.addEventListener('click', () => closePopup(popupCard));
 formCards.addEventListener('submit', addNewCard);
-popupImageClose.addEventListener('click', () => closePopup(popupimageView));
 
 
 renderCards();
