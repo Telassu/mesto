@@ -1,5 +1,6 @@
-import {Card} from "./Сard.js";
-import {FormValidator} from './FormValidator.js';
+import {Card} from "../scripts/Сard.js";
+import {FormValidator} from '../scripts/FormValidator.js';
+import '../pages/index.css';
 
 const initialCards = [
   {
@@ -153,7 +154,7 @@ function render(card, wrap) {
   cardList.prepend(card);
 }
 
-
+//увличение карточки
 function handleCardClick (name, link) {
   imageOnClick.src = link;
   imageOnClick.alt = name;
