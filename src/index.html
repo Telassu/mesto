@@ -4,14 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mesto</title>
+  <link rel="stylesheet" href="../pages/index.css">
 </head>
 <body class="page">
   <header class="header">
-    <img src="<%=require('../image/logo.svg')%>" alt="Логотип" class="logo">
+    <img src="../image/logo.svg" alt="Логотип" class="logo">
+    <!--<img src="<%=require('../image/logo.svg')%>" alt="Логотип" class="logo">-->
   </header>
   <main class="content">
     <section class="profile">
-      <img src="<%=require('../image/avatar.svg')%>" class="profile__avatar" alt="фотография пользователя">
+      <img src="../image/avatar.svg" class="profile__avatar" alt="фотография пользователя">
+      <!--<img src="<%=require('../image/avatar.svg')%>" class="profile__avatar" alt="фотография пользователя">-->
       <div class="profile-info">
         <h1 class="profile-info__name">Жак-Ив Кусто</h1>
         <button class="profile__edit-button" type="button" aria-label="изменить профиль"></button>
@@ -68,6 +71,7 @@
       <figcaption class="imageView__caption">подпись</figcaption>
       <button class="popup__close-button popup__close-button_imageView" type="button" aria-label="закрыть изображение"></button>
     </figure>
-  </div>  
+  </div>
+  <script type="module" src="./index.js"></script>  
 </body>
 </html>
