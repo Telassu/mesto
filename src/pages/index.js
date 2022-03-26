@@ -1,11 +1,11 @@
-import {Card} from "../scripts/Сard.js";
-import {FormValidator} from '../scripts/FormValidator.js';
-import {Section} from '../scripts/Section.js';
-import { PopupWithImage } from '../scripts/PopupWithImage.js';
-import {PopupWithForm} from '../scripts/PopupWithForm.js';
-import { UserInfo } from "../scripts/UserInfo.js";
+import {Card} from "../components/Сard.js";
+import {FormValidator} from '../components/FormValidator.js';
+import {Section} from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import { UserInfo } from "../components/UserInfo.js";
 
-//import '../pages/index.css';
+//import './index.css';
 
 const initialCards = [
   {
@@ -48,12 +48,12 @@ const cardListSection = document.querySelector('.elements__list');
 const popupCardAddBtn = document.querySelector('.profile__add-button');
 const formCards = document.querySelector('.popup__form_element');
 const inputCardList = formCards.querySelectorAll('.popup__input');
-const placeInput = formCards.querySelector('.popup__input_type_place');
-const linkInput = formCards.querySelector('.popup__input_type_link');
+//const placeInput = formCards.querySelector('.popup__input_type_place');
+//const linkInput = formCards.querySelector('.popup__input_type_link');
 const popupCard = document.querySelector('.popup_element');
 const popupimageView = document.querySelector('.imageView');
-export const imageOnClick = document.querySelector('.imageView__image');
-export const imageTextOnClick = document.querySelector('.imageView__caption');
+const imageOnClick = document.querySelector('.imageView__image');
+const imageTextOnClick = document.querySelector('.imageView__caption');
 const popups = document.querySelectorAll('.popup');
 
 //функции
@@ -93,14 +93,13 @@ popupProfileEdit.addEventListener('click', () => {
 });
 
 
-//создание карточки
+//карточки
 function creatCard (item) {
   const card = new Card (item, '.element__template', handleCardClick);
   const cardElement = card.generateCard();
 
   return cardElement
 }
-
 
 popupCardAddBtn.addEventListener('click', () => {
   cardValid.cleanInput();  
@@ -122,7 +121,6 @@ const cardsList = new Section({
 },
 cardListSection
 );
-
 
 //увличение карточки
 function handleCardClick (name, link) {
