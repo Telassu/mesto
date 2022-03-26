@@ -48,13 +48,8 @@ const cardListSection = document.querySelector('.elements__list');
 const popupCardAddBtn = document.querySelector('.profile__add-button');
 const formCards = document.querySelector('.popup__form_element');
 const inputCardList = formCards.querySelectorAll('.popup__input');
-//const placeInput = formCards.querySelector('.popup__input_type_place');
-//const linkInput = formCards.querySelector('.popup__input_type_link');
 const popupCard = document.querySelector('.popup_element');
 const popupimageView = document.querySelector('.imageView');
-const imageOnClick = document.querySelector('.imageView__image');
-const imageTextOnClick = document.querySelector('.imageView__caption');
-const popups = document.querySelectorAll('.popup');
 
 //функции
 //валидация форм
