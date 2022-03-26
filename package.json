@@ -4,7 +4,7 @@
   "description": "Одностраничный сайт, продолжает тему посещения удивительных мест России и предполагает галерею, в которой посетители могут ознакомиься с, возможно, новыми для себя местами.\r Однако, прежде всего, проект посвящен внедрению JavaScript и \"оживлению\" сайта для посетителей.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "rm -rf dist && webpack --mode production",
     "dev": "webpack serve"
   },
   "repository": {

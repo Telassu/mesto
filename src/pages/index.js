@@ -4,52 +4,11 @@ import {Section} from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import { UserInfo } from "../components/UserInfo.js";
+import { initialCards, formProfile, popupProfileEdit, popupProfile, inputProfileList,
+  nameInput, jobInput, profileJob, profileName, cardListSection, popupCardAddBtn, formCards,
+inputCardList, popupCard, popupimageView} from "../utils/constants.js";
 
 import './index.css';
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-//переменные
-
-const popupProfileEdit = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.popup_profile');
-const formProfile = document.querySelector('.popup__form_profile');
-const inputProfileList = formProfile.querySelectorAll('.popup__input');
-const nameInput = formProfile.querySelector('.popup__input_type_name');
-const jobInput = formProfile.querySelector('.popup__input_type_description');
-const profileName = document.querySelector('.profile-info__name');
-const profileJob = document.querySelector('.profile-info__description');
-const cardListSection = document.querySelector('.elements__list');
-const popupCardAddBtn = document.querySelector('.profile__add-button');
-const formCards = document.querySelector('.popup__form_element');
-const inputCardList = formCards.querySelectorAll('.popup__input');
-const popupCard = document.querySelector('.popup_element');
-const popupimageView = document.querySelector('.imageView');
 
 //функции
 //валидация форм
