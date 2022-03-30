@@ -19,7 +19,11 @@ export class PopupWithForm extends Popup {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   setEventListener(){
+=======
+  setEventListeners(){
+>>>>>>> parent of 3e2bd8d (Updates)
 =======
   setEventListeners(){
 >>>>>>> parent of 3e2bd8d (Updates)

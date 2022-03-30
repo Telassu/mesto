@@ -12,9 +12,15 @@ export class UserInfo {
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   setUserInfo (data) {
     this._nameElement.textContent = data.name;
     this._jobElement.textContent = data.job;
+=======
+  setUserInfo ({name, job}) {
+    this._nameElement.textContent = name;
+    this._jobElement.textContent = job;
+>>>>>>> parent of 3e2bd8d (Updates)
 =======
   setUserInfo ({name, job}) {
     this._nameElement.textContent = name;

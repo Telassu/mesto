@@ -22,6 +22,7 @@ cardValid.enableValidation();
 //открытие и закрытие попапов 
 const popupProfileForm = new PopupWithForm (popupProfile, handleProfileFormSubmit);
 <<<<<<< HEAD
+<<<<<<< HEAD
 popupProfileForm.setEventListener();
 
 const popupCardForm = new PopupWithForm (popupCard, handleCardFormSubmit);
@@ -29,6 +30,8 @@ popupCardForm.setEventListener();
 
 const popupImageForm = new PopupWithImage (popupimageView);
 =======
+=======
+>>>>>>> parent of 3e2bd8d (Updates)
 popupProfileForm.setEventListeners();
 
 const popupCardForm = new PopupWithForm (popupCard, handleCardFormSubmit);
@@ -36,6 +39,9 @@ popupCardForm.setEventListeners();
 
 const popupImageForm = new PopupWithImage (popupimageView);
 popupImageForm.setEventListeners();
+<<<<<<< HEAD
+>>>>>>> parent of 3e2bd8d (Updates)
+=======
 >>>>>>> parent of 3e2bd8d (Updates)
 
 //изменение профиля
@@ -46,6 +52,7 @@ function handleProfileFormSubmit (data) {
   popupProfileForm.close();
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 popupProfileEdit.addEventListener('click', () => {
@@ -60,6 +67,8 @@ popupProfileEdit.addEventListener('click', () => {
 
 =======
 >>>>>>> parent of 3e2bd8d (Updates)
+=======
+>>>>>>> parent of 3e2bd8d (Updates)
 //карточки
 function creatCard (item) {
   const card = new Card (item, '.element__template', handleCardClick);
@@ -69,11 +78,14 @@ function creatCard (item) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 popupCardAddBtn.addEventListener('click', () => {
   cardValid.cleanInput();  
   popupCardForm.open();
 });
 
+=======
+>>>>>>> parent of 3e2bd8d (Updates)
 =======
 >>>>>>> parent of 3e2bd8d (Updates)
 function handleCardFormSubmit(item) {
@@ -98,7 +110,10 @@ function handleCardClick (name, link) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 3e2bd8d (Updates)
 //обработчики
 popupProfileEdit.addEventListener('click', () => {
   profileValid.cleanInput();
@@ -114,5 +129,8 @@ popupCardAddBtn.addEventListener('click', () => {
   popupCardForm.open();
 });
 
+<<<<<<< HEAD
+>>>>>>> parent of 3e2bd8d (Updates)
+=======
 >>>>>>> parent of 3e2bd8d (Updates)
 cardsList.rendererItems();
