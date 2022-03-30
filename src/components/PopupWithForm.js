@@ -18,7 +18,11 @@ export class PopupWithForm extends Popup {
     return this._formValues;
     }
 
+<<<<<<< HEAD
   setEventListener(){
+=======
+  setEventListeners(){
+>>>>>>> parent of 3e2bd8d (Updates)
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
