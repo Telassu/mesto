@@ -36,4 +36,5 @@
 .imageView__caption{color:#fff;font-size:12px;font-weight:400;line-height:15px;margin-top:10px}
 .imageView__figure{box-sizing:border-box;position:relative;z-index:2}
 .popup__input_type_error{border-bottom:1px solid red;margin:0 auto}
+.profile__avatar-button{background-color:transparent;border-radius:50%;height:120px;transition:.4s;width:120px}.profile__avatar-button:hover{background-color:rgba(0,0,0,.8);background-image:url(a086f758840ae814ecde.svg);background-repeat:no-repeat;cursor:pointer}
 
