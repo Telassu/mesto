@@ -1,3 +1,4 @@
+import {api} from "../components/Api.js";
 import {Card} from "../components/Сard.js";
 import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
@@ -11,9 +12,26 @@ popupDelete} from "../utils/constants.js";
 
 //import './index.css';
 
+
+//Api
+//подгружаем карточки
+api.getInitialCards()
+.then(cardsLoadList => {
+  cardsLoadList.forEach((data) => {
+    const card = creatCard(data);
+    cardsList.addItem(card)
+  })
+});
+
+//подгружаем информацию пользователя
+api.getUserInfo()
+.then((data) => {
+  userInfo.setUserInfo(data);
+  userInfo.setUserAvatar(data);
+})
+
 //функции
 //валидация форм
-
 const profileValid = new FormValidator (inputProfileList, formProfile);
 profileValid.enableValidation();
 
@@ -37,7 +55,7 @@ const popupAvatarForm = new PopupWithForm (popupAvatar, handleAvatarFormSubmit);
 popupAvatarForm.setEventListeners();
 
 //изменение профиля
-const userInfo = new UserInfo(profileName, profileJob);
+const userInfo = new UserInfo(profileName, profileJob, avatar);
 
 function handleProfileFormSubmit (data) {
   userInfo.setUserInfo ({name: data ['name'], job: data ['description']});
@@ -66,7 +84,7 @@ function handleAvatarFormSubmit() {
 
 //перебор карточек
 const cardsList = new Section({
-  data: initialCards,
+  data: [],
   renderer: (item) => {
     const cardElement = creatCard(item);
     cardsList.addItem(cardElement)
