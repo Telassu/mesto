@@ -6,9 +6,10 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import { UserInfo } from "../components/UserInfo.js";
 import { initialCards, formProfile, popupProfileEdit, popupProfile, inputProfileList,
   nameInput, jobInput, profileJob, profileName, cardListSection, popupCardAddBtn, formCards,
-inputCardList, popupCard, popupimageView} from "../utils/constants.js";
+inputCardList, popupCard, popupimageView, popupAvatar, formAvatar, inputAvatar, avatar, avatarButton,
+popupDelete} from "../utils/constants.js";
 
-import './index.css';
+//import './index.css';
 
 //функции
 //валидация форм
@@ -19,6 +20,9 @@ profileValid.enableValidation();
 const cardValid = new FormValidator (inputCardList, formCards);
 cardValid.enableValidation();
 
+const avatarValid = new FormValidator (inputAvatar, formAvatar);
+avatarValid.enableValidation();
+
 //открытие и закрытие попапов 
 const popupProfileForm = new PopupWithForm (popupProfile, handleProfileFormSubmit);
 popupProfileForm.setEventListeners();
@@ -28,6 +32,9 @@ popupCardForm.setEventListeners();
 
 const popupImageForm = new PopupWithImage (popupimageView);
 popupImageForm.setEventListeners();
+
+const popupAvatarForm = new PopupWithForm (popupAvatar, handleAvatarFormSubmit);
+popupAvatarForm.setEventListeners();
 
 //изменение профиля
 const userInfo = new UserInfo(profileName, profileJob);
@@ -48,6 +55,13 @@ function creatCard (item) {
 function handleCardFormSubmit(item) {
   cardsList.addItem(creatCard({name: item['place'], link: item['link']}));
   popupCardForm.close();
+}
+
+
+//изменение аватара
+function handleAvatarFormSubmit() {
+  avatar.src = inputAvatar.value;
+  popupAvatarForm.close();
 }
 
 //перебор карточек
@@ -80,5 +94,11 @@ popupCardAddBtn.addEventListener('click', () => {
   cardValid.cleanInput();  
   popupCardForm.open();
 });
+
+avatarButton.addEventListener('click', () => {
+  avatarValid.cleanInput();
+  popupAvatarForm.open();
+});
+
 
 cardsList.rendererItems();

@@ -38,4 +38,12 @@ export const initialCards = [
   export const formCards = document.querySelector('.popup__form_element');
   export const inputCardList = formCards.querySelectorAll('.popup__input');
   export const popupCard = document.querySelector('.popup_element');
-  export const popupimageView = document.querySelector('.imageView');  
+  export const popupimageView = document.querySelector('.imageView');
+  
+  //9 ПР
+  export const popupAvatar = document.querySelector('.popup_avatar');
+  export const formAvatar = document.querySelector('.popup__form_avatar');
+  export const inputAvatar = formAvatar.querySelector('.popup__input');
+  export const avatar = document.querySelector('.profile__avatar');
+  export const avatarButton = document.querySelector('.profile__avatar-button');
+  export const popupDelete = document.querySelector('.popup__delete');
