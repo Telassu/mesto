@@ -5,7 +5,7 @@ import {Section} from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import { UserInfo } from "../components/UserInfo.js";
-import { initialCards, formProfile, popupProfileEdit, popupProfile, inputProfileList,
+import {formProfile, popupProfileEdit, popupProfile, inputProfileList,
   nameInput, jobInput, profileJob, profileName, cardListSection, popupCardAddBtn, formCards,
 inputCardList, popupCard, popupimageView, popupAvatar, formAvatar, inputAvatar, avatar, avatarButton,
 popupDelete} from "../utils/constants.js";
@@ -13,22 +13,13 @@ popupDelete} from "../utils/constants.js";
 //import './index.css';
 
 
-//Api
-//подгружаем карточки
-api.getInitialCards()
-.then(cardsLoadList => {
-  cardsLoadList.forEach((data) => {
-    const card = creatCard(data);
-    cardsList.addItem(card)
-  })
-});
-
 //подгружаем информацию пользователя
 api.getUserInfo()
-.then((data) => {
+.then((data) => {  
   userInfo.setUserInfo(data);
   userInfo.setUserAvatar(data);
-})
+});
+
 
 //функции
 //валидация форм
@@ -58,8 +49,11 @@ popupAvatarForm.setEventListeners();
 const userInfo = new UserInfo(profileName, profileJob, avatar);
 
 function handleProfileFormSubmit (data) {
-  userInfo.setUserInfo ({name: data ['name'], job: data ['description']});
-  popupProfileForm.close();
+  api.editUserInfo (data)
+  .then ((res) => {
+    userInfo.setUserInfo ({name: data ['name'], about: data ['description']});
+    popupProfileForm.close();
+  });
 };
 
 //карточки
@@ -70,17 +64,32 @@ function creatCard (item) {
   return cardElement
 }
 
-function handleCardFormSubmit(item) {
-  cardsList.addItem(creatCard({name: item['place'], link: item['link']}));
-  popupCardForm.close();
+function handleCardFormSubmit(data) {
+  api.editNewCard(data)
+  .then ((res) => {
+    cardsList.addItem(creatCard({name: data ['place'], link: data ['link']}));
+    popupCardForm.close();
+  })
 }
 
 
 //изменение аватара
-function handleAvatarFormSubmit() {
-  avatar.src = inputAvatar.value;
-  popupAvatarForm.close();
+function handleAvatarFormSubmit(data) {
+  api.editNewAvatar(data)
+  .then ((res) => {
+    userInfo.setUserAvatar({avatar: data ['avatar']});
+    popupAvatarForm.close();
+  })
 }
+
+//подгружаем карточки
+api.getInitialCards()
+.then(cardsLoadList => {
+  cardsLoadList.forEach((data) => {
+    const card = creatCard(data);
+    cardsList.addItem(card)
+  })
+});
 
 //перебор карточек
 const cardsList = new Section({
@@ -93,7 +102,7 @@ const cardsList = new Section({
 cardListSection
 );
 
-//увличение карточки
+//увеличение карточки
 function handleCardClick (name, link) {
   popupImageForm.open(name, link)
 }
@@ -105,7 +114,7 @@ popupProfileEdit.addEventListener('click', () => {
 
   const user = userInfo.getUserInfo();
   nameInput.value = user.name;
-  jobInput.value = user.job;
+  jobInput.value = user.about;
 });
 
 popupCardAddBtn.addEventListener('click', () => {

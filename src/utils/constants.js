@@ -1,4 +1,4 @@
-export const initialCards = [
+/*export const initialCards = [
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -24,7 +24,7 @@ export const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
-  
+  */
   export const popupProfileEdit = document.querySelector('.profile__edit-button');
   export const popupProfile = document.querySelector('.popup_profile');
   export const formProfile = document.querySelector('.popup__form_profile');
