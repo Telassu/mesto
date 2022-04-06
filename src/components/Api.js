@@ -73,7 +73,6 @@ class Api {
 /*
   likeCounterCard()
   deleteCard()
-  Loading()
 */
 
 }

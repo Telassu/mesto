@@ -4,6 +4,7 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { UserInfo } from "../components/UserInfo.js";
 import {formProfile, popupProfileEdit, popupProfile, inputProfileList,
   nameInput, jobInput, profileJob, profileName, cardListSection, popupCardAddBtn, formCards,
@@ -12,6 +13,8 @@ popupDelete} from "../utils/constants.js";
 
 //import './index.css';
 
+//профиль
+const userInfo = new UserInfo(profileName, profileJob, avatar);
 
 //подгружаем информацию пользователя
 api.getUserInfo()
@@ -20,8 +23,74 @@ api.getUserInfo()
   userInfo.setUserAvatar(data);
 });
 
+//изменение профиля
+function handleProfileFormSubmit (data) {
+  popupProfileForm.renderLoading(true)
+  api.editUserInfo (data)
+  .then ((res) => {
+    userInfo.setUserInfo ({name: data ['name'], about: data ['description']});
+    popupProfileForm.close();
+  })
+  .finally(() => {
+    popupProfileForm.renderLoading(false);
+  })
+  
+};
 
-//функции
+//изменение аватара
+function handleAvatarFormSubmit(data) {
+  popupAvatarForm.renderLoading(true)
+  api.editNewAvatar(data)
+  .then ((res) => {
+    userInfo.setUserAvatar({avatar: data ['avatar']});
+    popupAvatarForm.close();
+  })
+  .finally(() => {
+    popupAvatarForm.renderLoading(false);
+  })
+}
+
+//карточки
+function creatCard (item) {
+  const card = new Card (item, '.element__template', handleCardClick);
+  const cardElement = card.generateCard();
+
+  return cardElement
+}
+
+//сохранение карточки
+function handleCardFormSubmit(data) {
+  popupCardForm.renderLoading(true)
+  api.editNewCard(data)
+  .then ((res) => {
+    cardsList.addItem(creatCard({name: data ['place'], link: data ['link']}));
+    popupCardForm.close();
+  })
+  .finally(() => {
+    popupCardForm.renderLoading(false);
+  })
+}
+
+//подгружаем карточки
+api.getInitialCards()
+.then(cardsLoadList => {
+  cardsLoadList.forEach((data) => {
+    const card = creatCard(data);
+    cardsList.addItem(card)
+  })
+});
+
+//перебор карточек
+const cardsList = new Section({
+  data: [],
+  renderer: (item) => {
+    const cardElement = creatCard(item);
+    cardsList.addItem(cardElement)
+  }
+},
+cardListSection
+);
+
 //валидация форм
 const profileValid = new FormValidator (inputProfileList, formProfile);
 profileValid.enableValidation();
@@ -45,62 +114,8 @@ popupImageForm.setEventListeners();
 const popupAvatarForm = new PopupWithForm (popupAvatar, handleAvatarFormSubmit);
 popupAvatarForm.setEventListeners();
 
-//изменение профиля
-const userInfo = new UserInfo(profileName, profileJob, avatar);
-
-function handleProfileFormSubmit (data) {
-  api.editUserInfo (data)
-  .then ((res) => {
-    userInfo.setUserInfo ({name: data ['name'], about: data ['description']});
-    popupProfileForm.close();
-  });
-};
-
-//карточки
-function creatCard (item) {
-  const card = new Card (item, '.element__template', handleCardClick);
-  const cardElement = card.generateCard();
-
-  return cardElement
-}
-
-function handleCardFormSubmit(data) {
-  api.editNewCard(data)
-  .then ((res) => {
-    cardsList.addItem(creatCard({name: data ['place'], link: data ['link']}));
-    popupCardForm.close();
-  })
-}
-
-
-//изменение аватара
-function handleAvatarFormSubmit(data) {
-  api.editNewAvatar(data)
-  .then ((res) => {
-    userInfo.setUserAvatar({avatar: data ['avatar']});
-    popupAvatarForm.close();
-  })
-}
-
-//подгружаем карточки
-api.getInitialCards()
-.then(cardsLoadList => {
-  cardsLoadList.forEach((data) => {
-    const card = creatCard(data);
-    cardsList.addItem(card)
-  })
-});
-
-//перебор карточек
-const cardsList = new Section({
-  data: [],
-  renderer: (item) => {
-    const cardElement = creatCard(item);
-    cardsList.addItem(cardElement)
-  }
-},
-cardListSection
-);
+//const popupDeleteForm = new PopupWithConfirmation (popupDelete, handleFormDelete);
+//popupDeleteForm.setEventListeners()
 
 //увеличение карточки
 function handleCardClick (name, link) {
