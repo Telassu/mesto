@@ -6,22 +6,57 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { UserInfo } from "../components/UserInfo.js";
-import {formProfile, popupProfileEdit, popupProfile, inputProfileList,
-  nameInput, jobInput, profileJob, profileName, cardListSection, popupCardAddBtn, formCards,
-inputCardList, popupCard, popupimageView, popupAvatar, formAvatar, inputAvatar, avatar, avatarButton,
-popupDelete} from "../utils/constants.js";
+import {
+  formProfile, 
+  popupProfileEdit, 
+  popupProfile, 
+  inputProfileList,
+  nameInput, 
+  jobInput, 
+  profileJob, 
+  profileName, 
+  cardListSection, 
+  popupCardAddBtn, 
+  formCards,
+  inputCardList,
+  popupCard,
+  popupimageView,
+  popupAvatar,
+  formAvatar,
+  inputAvatar,
+  avatar,
+  avatarButton,
+  popupDelete
+} from "../utils/constants.js";
 
 //import './index.css';
+
+let userID
 
 //профиль
 const userInfo = new UserInfo(profileName, profileJob, avatar);
 
 //подгружаем информацию пользователя
-api.getUserInfo()
+/*api.getUserInfo()
 .then((data) => {  
+  userID = data._id;
   userInfo.setUserInfo(data);
   userInfo.setUserAvatar(data);
-});
+})
+*/
+
+//подгружаем информацию
+Promise.all([api.getUserInfo(),api.getInitialCards(userID)])
+  .then(([data, cardsLoadList]) => {              
+    userID = data._id;
+    userInfo.setUserInfo(data);
+    userInfo.setUserAvatar(data);
+
+    cardsLoadList.forEach((data) => {
+      const card = creatCard(data);
+      cardsList.addItem(card)
+    }) 
+  })
 
 //изменение профиля
 function handleProfileFormSubmit (data) {
@@ -52,7 +87,7 @@ function handleAvatarFormSubmit(data) {
 
 //карточки
 function creatCard (item) {
-  const card = new Card (item, '.element__template', handleCardClick);
+  const card = new Card (item, userID, '.element__template', handleCardClick, handleDeleteClick);
   const cardElement = card.generateCard();
 
   return cardElement
@@ -63,22 +98,29 @@ function handleCardFormSubmit(data) {
   popupCardForm.renderLoading(true)
   api.editNewCard(data)
   .then ((res) => {
-    cardsList.addItem(creatCard({name: data ['place'], link: data ['link']}));
+    cardsList.addItem(creatCard({name: data ['place'], link: data ['link']}, userID));
+    data.owner = {};
+    data.owner._id = userID;
     popupCardForm.close();
   })
   .finally(() => {
     popupCardForm.renderLoading(false);
   })
 }
+  
+//удаление карточки
+function handleDeleteClick(id) {
+  popupDeleteForm.open();
+}
 
 //подгружаем карточки
-api.getInitialCards()
+/*api.getInitialCards()
 .then(cardsLoadList => {
   cardsLoadList.forEach((data) => {
     const card = creatCard(data);
     cardsList.addItem(card)
   })
-});
+});*/
 
 //перебор карточек
 const cardsList = new Section({
@@ -114,8 +156,8 @@ popupImageForm.setEventListeners();
 const popupAvatarForm = new PopupWithForm (popupAvatar, handleAvatarFormSubmit);
 popupAvatarForm.setEventListeners();
 
-//const popupDeleteForm = new PopupWithConfirmation (popupDelete, handleFormDelete);
-//popupDeleteForm.setEventListeners()
+const popupDeleteForm = new PopupWithConfirmation (popupDelete, handleDeleteClick);
+popupDeleteForm.setEventListeners()
 
 //увеличение карточки
 function handleCardClick (name, link) {
@@ -141,6 +183,5 @@ avatarButton.addEventListener('click', () => {
   avatarValid.cleanInput();
   popupAvatarForm.open();
 });
-
 
 cardsList.rendererItems();
