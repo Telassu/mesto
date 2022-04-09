@@ -69,11 +69,42 @@ class Api {
   })
   }
 
+  putLikeCard (id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers
+    })
 
-/*
-  likeCounterCard()
-  deleteCard()
-*/
+    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
+    .catch((err) => {
+      console.log('ERROR! =>', err)
+  })
+  }
+
+  deleteLikeCard (id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers
+  })
+
+    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
+    .catch((err) => {
+      console.log('ERROR! =>', err)
+  })
+  }
+
+
+  deleteCard (id) {
+    return fetch(`${this._url}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+  })
+
+    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
+    .catch((err) => {
+      console.log('ERROR! =>', err)
+  })
+  }
 
 }
 

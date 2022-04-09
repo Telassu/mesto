@@ -36,15 +36,6 @@ let userID
 //профиль
 const userInfo = new UserInfo(profileName, profileJob, avatar);
 
-//подгружаем информацию пользователя
-/*api.getUserInfo()
-.then((data) => {  
-  userID = data._id;
-  userInfo.setUserInfo(data);
-  userInfo.setUserAvatar(data);
-})
-*/
-
 //подгружаем информацию
 Promise.all([api.getUserInfo(),api.getInitialCards(userID)])
   .then(([data, cardsLoadList]) => {              
@@ -86,8 +77,27 @@ function handleAvatarFormSubmit(data) {
 }
 
 //карточки
-function creatCard (item) {
-  const card = new Card (item, userID, '.element__template', handleCardClick, handleDeleteClick);
+function creatCard (data) {
+  const card = new Card (data, userID, '.element__template',
+  handleCardClick, 
+  //удаление карточки
+  (id) => {
+    api.deleteCard(id)
+    .then((res) => card.handleCardDelete())
+  },
+
+  //лайк карточки
+  (id) => {
+  if (card.isLike()) {
+    api.deleteLikeCard(id)
+    .then((res) => card.setLikes(res.likes))
+  } else {
+    api.putLikeCard(id)
+    .then((res) => card.setLikes(res.likes))
+  }
+});
+  data.owner = {};
+  data.owner._id = userID;
   const cardElement = card.generateCard();
 
   return cardElement
@@ -98,29 +108,20 @@ function handleCardFormSubmit(data) {
   popupCardForm.renderLoading(true)
   api.editNewCard(data)
   .then ((res) => {
-    cardsList.addItem(creatCard({name: data ['place'], link: data ['link']}, userID));
-    data.owner = {};
-    data.owner._id = userID;
+    cardsList.addItem(creatCard(res))
     popupCardForm.close();
   })
+
   .finally(() => {
     popupCardForm.renderLoading(false);
   })
 }
-  
+
 //удаление карточки
 function handleDeleteClick(id) {
   popupDeleteForm.open();
 }
 
-//подгружаем карточки
-/*api.getInitialCards()
-.then(cardsLoadList => {
-  cardsLoadList.forEach((data) => {
-    const card = creatCard(data);
-    cardsList.addItem(card)
-  })
-});*/
 
 //перебор карточек
 const cardsList = new Section({
