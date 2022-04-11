@@ -4,22 +4,22 @@ export class PopupWithConfirmation extends Popup {
   constructor (popupSelector, handleFormSubmit) {
     super(popupSelector);
 
-    this._handleFormSubmit = handleFormSubmit;
-    this._formButton = this._popupSelector.querySelector('.popup__save-button_delete');
+    this._formDelete = this._popupSelector.querySelector('.popup__form_delete');
+    this._handleFormSubmit = handleFormSubmit
   }
 
-/*submitFormHandler(callbackHandleFormSubmit) {
-    this._handleFormSubmit = callbackHandleFormSubmit
-  }*/
-
+  callbackSubmitForm (fnc) {
+    this._handleFormSubmit = fnc;
+  }
 
   setEventListeners(){
     super.setEventListeners();
 
-    this._formButton.addEventListener('submit', (evt) => {
+    this._formDelete.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      console.log('Hello world!')
-     // submitFormHandler(callbackHandleFormSubmit);
+      console.log('ni hao!')
+
+      this._handleFormSubmit();
     })
   };
 }

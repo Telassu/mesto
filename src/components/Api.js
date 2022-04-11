@@ -4,22 +4,22 @@ class Api {
     this._headers = options.headers
   }
 
+  _checkRes (res) {
+    if (res.ok) {
+      return res.json()
+    } else {
+      return Promise.reject(`ERROR! => ${res.status}`)
+    }
+  }
+
   getInitialCards() {
     return fetch (`${this._url}/cards`, {headers: this._headers})
-   
-    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
-    .catch((err) => {
-      console.log('ERROR! =>', err)
-    })
+    .then (this._checkRes)
   };
 
   getUserInfo () {
     return fetch (`${this._url}/users/me`, {headers: this._headers})
-
-    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
-    .catch((err) => {
-      console.log('ERROR! =>', err)
-  })
+    .then (this._checkRes)
   };
 
   editUserInfo (data) {
@@ -32,10 +32,7 @@ class Api {
       })
     })
 
-    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
-    .catch((err) => {
-      console.log('ERROR! =>', err)
-  })
+    .then (this._checkRes)
   }
 
   editNewAvatar (data) {
@@ -47,10 +44,7 @@ class Api {
       })
     })
 
-    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
-    .catch((err) => {
-      console.log('ERROR! =>', err)
-  })
+    .then (this._checkRes)
   }
 
   editNewCard (data) {
@@ -63,10 +57,7 @@ class Api {
       })
     })
 
-    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
-    .catch((err) => {
-      console.log('ERROR! =>', err)
-  })
+    .then (this._checkRes)
   }
 
   putLikeCard (id) {
@@ -75,10 +66,7 @@ class Api {
       headers: this._headers
     })
 
-    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
-    .catch((err) => {
-      console.log('ERROR! =>', err)
-  })
+    .then (this._checkRes)
   }
 
   deleteLikeCard (id) {
@@ -87,10 +75,7 @@ class Api {
       headers: this._headers
   })
 
-    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
-    .catch((err) => {
-      console.log('ERROR! =>', err)
-  })
+  .then (this._checkRes)
   }
 
 
@@ -100,10 +85,7 @@ class Api {
       headers: this._headers
   })
 
-    .then ((res) => res.ok ? res.json() : Promise.reject(res.status))
-    .catch((err) => {
-      console.log('ERROR! =>', err)
-  })
+  .then (this._checkRes)
   }
 
 }

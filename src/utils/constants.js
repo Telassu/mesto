@@ -19,4 +19,4 @@
   export const inputAvatar = formAvatar.querySelector('.popup__input');
   export const avatar = document.querySelector('.profile__avatar');
   export const avatarButton = document.querySelector('.profile__avatar-button');
-  export const popupDelete = document.querySelector('.popup__form_delete');
+  export const popupDelete = document.querySelector('.popup_delete');

@@ -3,8 +3,8 @@ export class Card {
       userID, 
       cardSelector, 
       handleCardClick, 
-      handleDeleteClick, 
-      handleLikeClick) {
+      {handleDeleteClick, 
+      handleLikeClick}) {
       this._name = data.name;
       this._link = data.link;
       this._id = data._id;

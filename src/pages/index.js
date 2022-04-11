@@ -80,21 +80,26 @@ function handleAvatarFormSubmit(data) {
 function creatCard (data) {
   const card = new Card (data, userID, '.element__template',
   handleCardClick, 
+  
   //удаление карточки
-  (id) => {
-    api.deleteCard(id)
-    .then((res) => card.handleCardDelete())
+  {handleDeleteClick: (id) => {
+    popupDeleteForm.open();
+    popupDeleteForm.callbackSubmitForm(() => {
+      api.deleteCard(id)
+     .then((res) => card.handleCardDelete())
+     .then(popupDeleteForm.close())
+    })
   },
 
   //лайк карточки
-  (id) => {
+  handleLikeClick: (id) => {
   if (card.isLike()) {
     api.deleteLikeCard(id)
     .then((res) => card.setLikes(res.likes))
   } else {
     api.putLikeCard(id)
     .then((res) => card.setLikes(res.likes))
-  }
+  }}
 });
   data.owner = {};
   data.owner._id = userID;
@@ -116,12 +121,6 @@ function handleCardFormSubmit(data) {
     popupCardForm.renderLoading(false);
   })
 }
-
-//удаление карточки
-function handleDeleteClick(id) {
-  popupDeleteForm.open();
-}
-
 
 //перебор карточек
 const cardsList = new Section({
@@ -157,7 +156,7 @@ popupImageForm.setEventListeners();
 const popupAvatarForm = new PopupWithForm (popupAvatar, handleAvatarFormSubmit);
 popupAvatarForm.setEventListeners();
 
-const popupDeleteForm = new PopupWithConfirmation (popupDelete, handleDeleteClick);
+const popupDeleteForm = new PopupWithConfirmation (popupDelete);
 popupDeleteForm.setEventListeners()
 
 //увеличение карточки
