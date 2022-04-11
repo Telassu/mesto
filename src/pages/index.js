@@ -46,7 +46,10 @@ Promise.all([api.getUserInfo(),api.getInitialCards(userID)])
     cardsLoadList.forEach((data) => {
       const card = creatCard(data);
       cardsList.addItem(card)
-    }) 
+    })
+  })
+  .catch((err) => {
+    console.log('ERROR! =>', err)
   })
 
 //изменение профиля
@@ -56,6 +59,9 @@ function handleProfileFormSubmit (data) {
   .then ((res) => {
     userInfo.setUserInfo ({name: data ['name'], about: data ['description']});
     popupProfileForm.close();
+  })
+  .catch((err) => {
+    console.log('ERROR! =>', err)
   })
   .finally(() => {
     popupProfileForm.renderLoading(false);
@@ -70,6 +76,9 @@ function handleAvatarFormSubmit(data) {
   .then ((res) => {
     userInfo.setUserAvatar({avatar: data ['avatar']});
     popupAvatarForm.close();
+  })
+  .catch((err) => {
+    console.log('ERROR! =>', err)
   })
   .finally(() => {
     popupAvatarForm.renderLoading(false);
@@ -88,6 +97,9 @@ function creatCard (data) {
       api.deleteCard(id)
      .then((res) => card.handleCardDelete())
      .then(popupDeleteForm.close())
+     .catch((err) => {
+      console.log('ERROR! =>', err)
+    })
     })
   },
 
@@ -96,9 +108,15 @@ function creatCard (data) {
   if (card.isLike()) {
     api.deleteLikeCard(id)
     .then((res) => card.setLikes(res.likes))
+    .catch((err) => {
+      console.log('ERROR! =>', err)
+    })
   } else {
     api.putLikeCard(id)
     .then((res) => card.setLikes(res.likes))
+    .catch((err) => {
+      console.log('ERROR! =>', err)
+    })
   }}
 });
   data.owner = {};
@@ -115,6 +133,9 @@ function handleCardFormSubmit(data) {
   .then ((res) => {
     cardsList.addItem(creatCard(res))
     popupCardForm.close();
+  })
+  .catch((err) => {
+    console.log('ERROR! =>', err)
   })
 
   .finally(() => {
