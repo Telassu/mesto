@@ -17,7 +17,6 @@ export class PopupWithConfirmation extends Popup {
 
     this._formDelete.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      console.log('ni hao!')
 
       this._handleFormSubmit();
     })

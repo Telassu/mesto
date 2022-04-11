@@ -29,7 +29,7 @@ import {
   popupDelete
 } from "../utils/constants.js";
 
-//import './index.css';
+import './index.css';
 
 let userID
 
@@ -80,7 +80,7 @@ function handleAvatarFormSubmit(data) {
 function creatCard (data) {
   const card = new Card (data, userID, '.element__template',
   handleCardClick, 
-  
+
   //удаление карточки
   {handleDeleteClick: (id) => {
     popupDeleteForm.open();
